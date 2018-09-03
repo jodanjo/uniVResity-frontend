@@ -11,6 +11,7 @@ import {
   DropdownToggle,
   DropdownMenu,
   DropdownItem } from 'reactstrap';
+import Searchbar from '../Searchbar/Searchbar';
 
 export default class Example extends React.Component {
   constructor(props) {
@@ -29,11 +30,12 @@ export default class Example extends React.Component {
   render() {
     return (
       <div>
-        <Navbar color="dark" dark expand="md">
+        <Navbar className="Navbar" color="light" light expand="md">
           <NavbarBrand className="NavbarBrand" href="">uniVResity</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
+            <Searchbar />
               <NavItem>
                 <NavLink href="">Field 1</NavLink>
               </NavItem>

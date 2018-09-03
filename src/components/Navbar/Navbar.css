@@ -2,5 +2,11 @@
     letter-spacing: 2px;
     font-size: 28px;
     font-weight: 300;
+    margin-bottom: 10px;
+    margin-top: 5px;
+    
+}
 
+.Navbar{
+    box-shadow: 5px 10px 18px #888888;
 }

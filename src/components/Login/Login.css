@@ -21,6 +21,7 @@
   
   button {
     justify-content: flex-end;
+    margin-bottom: 5px;
   }
   
   .App-title {

@@ -86,6 +86,7 @@ import {
                 </FormGroup>
               </Col>
               <Button color="success">Submit</Button>
+              <p>Don't have an account yet?</p>
           </Form>
           </Container>
         );
