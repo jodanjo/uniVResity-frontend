@@ -5,7 +5,7 @@ import {
     Button, FormFeedback,
   } from 'reactstrap';
 
-  class Login extends React.Component {
+  class Register extends React.Component {
     constructor(props) {
         super(props);
           this.state = {
@@ -13,6 +13,8 @@ import {
           'password': '',
           validate: {
             emailState: '',
+            passwordState: '',
+            nameState: '',
           },
         }
         this.handleChange = this.handleChange.bind(this);
@@ -28,6 +30,28 @@ import {
           }
           this.setState({ validate })
         }
+
+        validatePassword(e) {
+          const pwRex = /^(?=.{8,})/;
+          const { validate } = this.state
+            if (pwRex.test(e.target.value)) {
+              validate.passwordState = 'has-success'
+            } else {
+              validate.passwordState = 'has-danger'
+            }
+            this.setState({ validate })
+          }
+
+          validateName(e) {
+            const nameRex = /^(?=.{3,})/;
+            const { validate } = this.state
+              if (nameRex.test(e.target.value)) {
+                validate.nameState = 'has-success'
+              } else {
+                validate.nameState = 'has-danger'
+              }
+              this.setState({ validate })
+            }
     
       handleChange = async (event) => {
         const { target } = event;
@@ -43,11 +67,36 @@ import {
         console.log(`Email: ${ this.state.email }`)
       }
     render() {
-        const { email, password } = this.state;
+        const { email, password, name } = this.state;
+        const isEnabled = this.state.validate.emailState === 'has-success' && this.state.validate.passwordState === 'has-success' && this.state.validate.nameState === 'has-success';
         return (
           <Container className="app">
-            <h2>Sign In</h2>
+            <h2>Register</h2>
             <Form className="form" onSubmit={ (e) => this.submitForm(e) }>
+            <Col>
+                <FormGroup>
+                  <Label>Name</Label>
+                  <Input
+                    type="name"
+                    name="name"
+                    id="examplename"
+                    placeholder="Full Name"
+                    value={ name }
+                    valid={ this.state.validate.nameState === 'has-success' }
+                    invalid={ this.state.validate.nameState === 'has-danger' }
+                    onChange={ (e) => {
+                                this.validateName(e)
+                                this.handleChange(e)
+                              } }
+                  />
+                  <FormFeedback valid>
+                    Hello There! 
+                  </FormFeedback>
+                  <FormFeedback>
+                    Please enter a valid name! 
+                  </FormFeedback>
+                </FormGroup>
+              </Col>
               <Col>
                 <FormGroup>
                   <Label>Email</Label>
@@ -74,18 +123,29 @@ import {
               </Col>
               <Col>
                 <FormGroup>
-                  <Label for="examplePassword">Password</Label>
+                  <Label>Password</Label>
                   <Input
                     type="password"
                     name="password"
                     id="examplePassword"
                     placeholder="Password"
                     value={ password }
-                    onChange={ (e) => this.handleChange(e) }
-                />
+                    valid={ this.state.validate.passwordState === 'has-success' }
+                    invalid={ this.state.validate.passwordState === 'has-danger' }
+                    onChange={ (e) => {
+                                this.validatePassword(e)
+                                this.handleChange(e)
+                              } }
+                  />
+                  <FormFeedback valid>
+                    That will work!
+                  </FormFeedback>
+                  <FormFeedback>
+                  Password must be at least 8 characters long! 
+                  </FormFeedback>
                 </FormGroup>
               </Col>
-              <Button color="success">Submit</Button>
+              <Button disabled={!isEnabled} color="success">Submit</Button>
           </Form>
           </Container>
         );
@@ -94,4 +154,4 @@ import {
     
   
   
-  export default Login;
+  export default Register;

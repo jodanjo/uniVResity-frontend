@@ -1,8 +1,6 @@
 import React from 'react';
 import {
-  Collapse,
   Navbar,
-  NavbarToggler,
   NavbarBrand,
   Nav,
   NavItem,
@@ -12,39 +10,40 @@ import {
   DropdownMenu,
   DropdownItem } from 'reactstrap';
 import Searchbar from '../Searchbar/Searchbar';
+import { FaUserAlt } from '../../../node_modules/react-icons/fa';
 
-export default class Example extends React.Component {
-  constructor(props) {
-    super(props);
 
-    this.toggle = this.toggle.bind(this);
-    this.state = {
-      isOpen: false
-    };
-  }
-  toggle() {
-    this.setState({
-      isOpen: !this.state.isOpen
-    });
-  }
-  render() {
+const Navigation = ({onRouteChange, isSignedIn}) => {
+  if (!isSignedIn) {
     return (
       <div>
         <Navbar className="Navbar" color="light" light expand="md">
           <NavbarBrand className="NavbarBrand" href="">uniVResity</NavbarBrand>
-          <NavbarToggler onClick={this.toggle} />
-          <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
-            <Searchbar />
+            <Searchbar />      
               <NavItem>
-                <NavLink href="">Field 1</NavLink>
+                <NavLink>
+                <p style={{cursor:'pointer'}} onClick={() => onRouteChange('login')}>Sign in</p>
+                  </NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="">Field 2</NavLink>
+                <NavLink>
+                <p style={{cursor:'pointer'}} onClick={() => onRouteChange('register')}>Register</p>
+                  </NavLink>
               </NavItem>
+              </Nav>
+            </Navbar>
+      </div>
+      );
+      } else {
+              return (
+                <Navbar className="Navbar" color="light" light expand="md">
+                <NavbarBrand className="NavbarBrand" href="">uniVResity</NavbarBrand>
+                  <Nav className="ml-auto" navbar>
+                  <Searchbar /> 
               <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle nav caret>
-                  User First Name
+                  <FaUserAlt/>
                 </DropdownToggle>
                 <DropdownMenu right>
                   <DropdownItem>
@@ -55,14 +54,16 @@ export default class Example extends React.Component {
                   </DropdownItem>
                   <DropdownItem divider />
                   <DropdownItem>
-                    Reset
+                    <p onClick={() => onRouteChange('signout')}>Sign out</p>
                   </DropdownItem>
                 </DropdownMenu>
               </UncontrolledDropdown>
-            </Nav>
-          </Collapse>
+              </Nav>
         </Navbar>
-      </div>
     );
   }
 }
+
+
+
+  export default Navigation;
