@@ -51,11 +51,11 @@ class App extends Component {
       return (
         <div className="App"> 
       <Navigation isSignedIn={isSignedIn} onRouteChange={this.onRouteChange} />
-      <CardList robots={filteredRobots} />
+      
           { route === 'home' 
             ? <div>
               
-              
+              <CardList robots={filteredRobots} />
               </div>
             : (
                route === 'login' 
