@@ -2,8 +2,10 @@ import React from 'react';
 import {
     Container, Col, Form,
     FormGroup, Label, Input,
-    Button, FormFeedback,
+    Button, FormFeedback, Alert
   } from 'reactstrap';
+  
+  
 
   class Login extends React.Component {
     constructor(props) {
@@ -52,6 +54,7 @@ import {
                 <FormGroup>
                   <Label>Email</Label>
                   <Input
+                  
                     type="email"
                     name="email"
                     id="exampleEmail"
@@ -88,6 +91,7 @@ import {
               <Button color="success">Submit</Button>
           </Form>
           </Container>
+      
         );
       }
     }

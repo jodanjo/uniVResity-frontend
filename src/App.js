@@ -2,9 +2,13 @@ import React, { Component } from 'react';
 import Login from './components/Login/Login';
 import Navigation from './components/Navigation/Navigation';
 import Register from './components/Register/Register';
+import CardList from './components/CardList/CardList';
 import './App.css';
 import './components/Login/Login.css';
 import './components/Navigation/Navigation.css';
+import './components/CardView/CardView.css';
+
+
 
 
 class App extends Component {
@@ -12,9 +16,22 @@ class App extends Component {
       super();
       this.state = {
         route: 'home',
-        isSignedIn: null
+        isSignedIn: null,
+        robots: [],
+        searchfield: ''
       }
     }
+
+    componentDidMount(){
+      fetch('https://jsonplaceholder.typicode.com/users')
+      .then(response=> response.json())
+      .then(users => this.setState({robots : users}));	
+    }
+  
+    onSearchChange = (event) => {
+      this.setState({ searchfield: event.target.value })
+    }
+  
     onRouteChange = (route) => {
       if (route === 'signout') {
         this.setState({isSignedIn: false})
@@ -27,12 +44,17 @@ class App extends Component {
     }
 
     render() {
+      const filteredRobots = this.state.robots.filter(robot => {
+        return robot.name.toLowerCase().includes(this.state.searchfield.toLowerCase())
+      })
       const { isSignedIn, route } = this.state;
       return (
         <div className="App"> 
-        <Navigation isSignedIn={isSignedIn} onRouteChange={this.onRouteChange} />
+      <Navigation isSignedIn={isSignedIn} onRouteChange={this.onRouteChange} />
+      <CardList robots={filteredRobots} />
           { route === 'home' 
             ? <div>
+              
               
               </div>
             : (
@@ -45,7 +67,6 @@ class App extends Component {
       );
     }
   }
-  
 
 
 export default App;
