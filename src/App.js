@@ -53,6 +53,7 @@ class App extends Component {
         <div className="App"> 
       <Navigation isSignedIn={isSignedIn} onRouteChange={this.onRouteChange} />
 
+
           { route === 'home' 
             ? <div>
               <Searchbar searchChange={this.onSearchChange}/>
