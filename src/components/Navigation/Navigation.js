@@ -12,17 +12,13 @@ import {
 import Searchbar from '../Searchbar/Searchbar';
 import { FaUserAlt } from '../../../node_modules/react-icons/fa';
 
-
-
-
 const Navigation = ({onRouteChange, isSignedIn}) => {
   if (!isSignedIn) {
     return (
       <div>
         <Navbar className="Navbar" color="light" light expand="md">
           <NavbarBrand className="NavbarBrand" href="">uniVResity</NavbarBrand>
-            <Nav className="ml-auto" navbar>
-            <Searchbar searchChange={this.onSearchChange}/>     
+            <Nav className="ml-auto" navbar>    
               <NavItem>
                 <NavLink>
                 <p style={{cursor:'pointer'}} onClick={() => onRouteChange('login')}>Sign in</p>
@@ -42,7 +38,6 @@ const Navigation = ({onRouteChange, isSignedIn}) => {
                 <Navbar className="Navbar" color="light" light expand="md">
                 <NavbarBrand className="NavbarBrand" href="">uniVResity</NavbarBrand>
                   <Nav className="ml-auto" navbar>
-                  <Searchbar searchChange={this.onSearchChange}/> 
               <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle nav caret>
                   <FaUserAlt/>

@@ -2,7 +2,7 @@ import React from 'react';
 import {
     Container, Col, Form,
     FormGroup, Label, Input,
-    Button, FormFeedback, Alert
+    Button, FormFeedback, 
   } from 'reactstrap';
   
   
@@ -47,6 +47,7 @@ import {
     render() {
         const { email, password } = this.state;
         return (
+
           <Container className="app">
             <h2>Sign In</h2>
             <Form className="form" onSubmit={ (e) => this.submitForm(e) }>
@@ -91,7 +92,6 @@ import {
               <Button color="success">Submit</Button>
           </Form>
           </Container>
-      
         );
       }
     }

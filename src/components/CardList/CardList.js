@@ -1,6 +1,4 @@
 import React from 'react'; 
-import { Card, CardImg, CardText, CardBody,
-    CardTitle, CardSubtitle, Button, Container, Row, Col } from 'reactstrap';
 import CardView from '../CardView/CardView';
 
 const CardList = ({ robots }) => {

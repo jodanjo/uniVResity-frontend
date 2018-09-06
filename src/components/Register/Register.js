@@ -2,7 +2,7 @@ import React from 'react';
 import {
     Container, Col, Form,
     FormGroup, Label, Input,
-    Button, FormFeedback,
+    Button, FormFeedback
   } from 'reactstrap';
 
   class Register extends React.Component {

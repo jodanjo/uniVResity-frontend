@@ -3,6 +3,7 @@ import Login from './components/Login/Login';
 import Navigation from './components/Navigation/Navigation';
 import Register from './components/Register/Register';
 import CardList from './components/CardList/CardList';
+import Searchbar from './components/Searchbar/Searchbar';
 import './App.css';
 import './components/Login/Login.css';
 import './components/Navigation/Navigation.css';
@@ -37,24 +38,25 @@ class App extends Component {
         this.setState({isSignedIn: false})
       } else if (route === 'home') {
         this.setState({isSignedIn: true})
-      } else if (route === 'homeSignedIn'){
-        this.setState ({isSignedIn: true})
-      }
+      } 
       this.setState({route: route});
     }
 
     render() {
-      const filteredRobots = this.state.robots.filter(robot => {
+      const filteredRobots  = this.state.robots.filter(robot => {
         return robot.name.toLowerCase().includes(this.state.searchfield.toLowerCase())
       })
+
       const { isSignedIn, route } = this.state;
+
       return (
         <div className="App"> 
       <Navigation isSignedIn={isSignedIn} onRouteChange={this.onRouteChange} />
-      <CardList robots={filteredRobots} />
+
           { route === 'home' 
             ? <div>
-              
+              <Searchbar searchChange={this.onSearchChange}/>
+              <CardList robots = {filteredRobots}/>
               
               </div>
             : (

@@ -1,11 +1,11 @@
 import React from 'react'; 
-import { Card, CardImg, CardText, CardBody,
-    CardTitle, CardSubtitle, Button, Container, Row, Col } from 'reactstrap';
+import { Card, CardImg, CardText, CardBody, Container, Row, Col,
+    CardTitle, CardSubtitle, Button } from 'reactstrap';
 
     const CardView = ({name, email, id})  => {
         return (
           <div className='inline'>
-            <Card style={{ width: '300px', marginTop:'25px', marginLeft:'15px',}}>
+            <Card style={{ width: '300px', marginTop:'20px', marginLeft:'10px', marginBottom:'5px'}}>
               <CardImg alt='robots' height='200px' src={`https://robohash.org/${id}`} />
               <CardBody>
                 <CardTitle>{name}</CardTitle>
