@@ -1,5 +1,5 @@
 import React from 'react'; 
-import { Card, CardImg, CardText, CardBody, Container, Row, Col,
+import { Card, CardImg, CardText, CardBody,
     CardTitle, CardSubtitle, Button } from 'reactstrap';
 
     const CardView = ({name, email, id})  => {

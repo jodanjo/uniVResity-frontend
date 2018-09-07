@@ -4,10 +4,12 @@ import Navigation from './components/Navigation/Navigation';
 import Register from './components/Register/Register';
 import CardList from './components/CardList/CardList';
 import Searchbar from './components/Searchbar/Searchbar';
+import CreateRoom from './components/CreateRoom/CreateRoom';
 import './App.css';
 import './components/Login/Login.css';
 import './components/Navigation/Navigation.css';
 import './components/CardView/CardView.css';
+
 
 
 
@@ -17,7 +19,7 @@ class App extends Component {
       super();
       this.state = {
         route: 'home',
-        isSignedIn: null,
+        isSignedIn: false,
         robots: [],
         searchfield: ''
       }
@@ -52,8 +54,7 @@ class App extends Component {
       return (
         <div className="App"> 
       <Navigation isSignedIn={isSignedIn} onRouteChange={this.onRouteChange} />
-
-
+      <CreateRoom />
           { route === 'home' 
             ? <div>
               <Searchbar searchChange={this.onSearchChange}/>

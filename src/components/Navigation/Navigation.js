@@ -9,7 +9,6 @@ import {
   DropdownToggle,
   DropdownMenu,
   DropdownItem } from 'reactstrap';
-import Searchbar from '../Searchbar/Searchbar';
 import { FaUserAlt } from '../../../node_modules/react-icons/fa';
 
 const Navigation = ({onRouteChange, isSignedIn}) => {
@@ -38,6 +37,9 @@ const Navigation = ({onRouteChange, isSignedIn}) => {
                 <Navbar className="Navbar" color="light" light expand="md">
                 <NavbarBrand className="NavbarBrand" href="">uniVResity</NavbarBrand>
                   <Nav className="ml-auto" navbar>
+                  <NavLink>
+                <p style={{cursor:'pointer'}} onClick={() => onRouteChange('createroom')}>Create Room</p>
+                  </NavLink>
               <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle nav caret>
                   <FaUserAlt/>
