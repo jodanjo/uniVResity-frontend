@@ -10,7 +10,7 @@ import {
   DropdownMenu,
   Button,
   DropdownItem } from 'reactstrap';
-import { FaUserCircle } from '../../../node_modules/react-icons/fa';
+import { FaUserCircle, FaSignInAlt } from '../../../node_modules/react-icons/fa';
 
 
 const Navigation = ({onRouteChange, isSignedIn}) => {
@@ -26,7 +26,7 @@ const Navigation = ({onRouteChange, isSignedIn}) => {
                   </NavLink>                  
               </NavItem>
               <NavItem>
-              <Button color="danger" style={{height:'40px', marginTop:'5px'}}><p style={{cursor:'pointer'}} onClick={() => onRouteChange('login')}>Sign in</p></Button>
+              <Button color="danger" style={{height:'40px', marginTop:'5px'}}><p style={{cursor:'pointer'}} onClick={() => onRouteChange('login')}><FaSignInAlt/> Sign in</p></Button>
               </NavItem>
               </Nav>
             </Navbar>
