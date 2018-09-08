@@ -8,8 +8,10 @@ import {
   UncontrolledDropdown,
   DropdownToggle,
   DropdownMenu,
+  Button,
   DropdownItem } from 'reactstrap';
-import { FaUserAlt } from '../../../node_modules/react-icons/fa';
+import { FaUserCircle } from '../../../node_modules/react-icons/fa';
+
 
 const Navigation = ({onRouteChange, isSignedIn}) => {
   if (!isSignedIn) {
@@ -19,14 +21,12 @@ const Navigation = ({onRouteChange, isSignedIn}) => {
           <NavbarBrand className="NavbarBrand" href="">uniVResity</NavbarBrand>
             <Nav className="ml-auto" navbar>    
               <NavItem>
-                <NavLink>
-                <p style={{cursor:'pointer'}} onClick={() => onRouteChange('login')}>Sign in</p>
-                  </NavLink>
+              <NavLink>
+                <p style={{cursor:'pointer', marginTop:'5px'}} onClick={() => onRouteChange('register')}>Register</p>
+                  </NavLink>                  
               </NavItem>
               <NavItem>
-                <NavLink>
-                <p style={{cursor:'pointer'}} onClick={() => onRouteChange('register')}>Register</p>
-                  </NavLink>
+              <Button color="danger" style={{height:'40px', marginTop:'5px'}}><p style={{cursor:'pointer'}} onClick={() => onRouteChange('login')}>Sign in</p></Button>
               </NavItem>
               </Nav>
             </Navbar>
@@ -42,7 +42,7 @@ const Navigation = ({onRouteChange, isSignedIn}) => {
                   </NavLink>
               <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle nav caret>
-                  <FaUserAlt/>
+                  <FaUserCircle size={18} color={'dodgerblue'}/>
                 </DropdownToggle>
                 <DropdownMenu right>
                   <DropdownItem>

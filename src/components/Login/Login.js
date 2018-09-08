@@ -2,7 +2,7 @@ import React from 'react';
 import {
     Container, Col, Form,
     FormGroup, Label, Input,
-    Button, FormFeedback, 
+    Button, FormFeedback
   } from 'reactstrap';
   
   
@@ -18,6 +18,7 @@ import {
           },
         }
         this.handleChange = this.handleChange.bind(this);
+      
       }
     
       validateEmail(e) {
@@ -47,7 +48,6 @@ import {
     render() {
         const { email, password } = this.state;
         return (
-
           <Container className="app">
             <h2>Sign In</h2>
             <Form className="form" onSubmit={ (e) => this.submitForm(e) }>

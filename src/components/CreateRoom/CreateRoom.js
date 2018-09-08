@@ -1,8 +1,8 @@
 import React from 'react';
 import { Button, Form, FormGroup, Label, Input, FormText, Card } from 'reactstrap';
-import { FaCheck } from '../../../node_modules/react-icons/fa';
 
-export default class CreateRoom extends React.Component {
+
+class Createroom extends React.Component {
   render() {
     return (
         <div style={{paddingLeft:'10px', paddingRight:'10px', marginTop:'30px', marginLeft:'10px', marginRight:'10px'}}>
@@ -19,11 +19,11 @@ export default class CreateRoom extends React.Component {
         </FormGroup>
         <FormGroup>
           <Label for="overview">Brief Overview</Label>
-          <Input type="text" maxlength="250" name="text" id="exampleText" placeholder="Overview of your project.  Keep it short and sweet" required/>
+          <Input type="text" maxlength="250" name="overview" id="overview" placeholder="Overview of your project.  Keep it short and sweet" required/>
         </FormGroup>
         <FormGroup>
           <Label for="description">Full Description</Label>
-          <Input type="textarea" name="text" id="exampleText" placeholder="Detailed description" required />
+          <Input type="textarea" name="description" id="description" placeholder="Detailed description" required />
         </FormGroup>
         <FormGroup>
           <Label for="exampleFile">Upload Image</Label>
@@ -54,3 +54,5 @@ export default class CreateRoom extends React.Component {
     );
   }
 }
+
+export default Createroom;
