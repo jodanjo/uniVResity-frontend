@@ -8,6 +8,7 @@ import './App.css';
 import './components/Login/Login.css';
 import './components/Navigation/Navigation.css';
 import './components/CardView/CardView.css';
+import Createroom from './components/Createroom/Createroom';
 
 
 
@@ -48,6 +49,7 @@ class App extends Component {
         return robot.name.toLowerCase().includes(this.state.searchfield.toLowerCase())
       })
 
+
       const { isSignedIn, route } = this.state;
 
       return (
@@ -57,6 +59,7 @@ class App extends Component {
             ? <div>
               <Searchbar searchChange={this.onSearchChange}/>
               <CardList robots = {filteredRobots}/>
+              <Createroom/>
               </div>
             : (
                route === 'login' 
@@ -64,6 +67,7 @@ class App extends Component {
                : <Register loadUser={this.loadUser} onRouteChange={this.onRouteChange}/>
                
             )
+
           }
           
         </div>
