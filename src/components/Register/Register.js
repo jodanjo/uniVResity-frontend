@@ -144,9 +144,14 @@ import {
                   Password must be at least 8 characters long! 
                   </FormFeedback>
                 </FormGroup>
-              </Col>
-              <Button disabled={!isEnabled} color="success">Submit</Button>
-          </Form>
+              <FormGroup>
+          <Label for="exampleText">Bio (optional)</Label>
+          <Input type="textarea" name="text" id="exampleText" placeholder="Tell us a little about yourself" />
+        </FormGroup>
+        </Col>
+              <Button disabled={!isEnabled} color="primary">Join</Button>
+           
+         </Form>
           </Container>
         );
       }

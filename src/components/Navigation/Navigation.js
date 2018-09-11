@@ -10,7 +10,7 @@ import {
   DropdownMenu,
   Button,
   DropdownItem } from 'reactstrap';
-import { FaUserCircle, FaSignInAlt, FaChalkboardTeacher } from '../../../node_modules/react-icons/fa';
+import { FaUserCircle, FaSignInAlt, FaChalkboardTeacher, FaDashcube, FaTachometerAlt, FaCog, FaSignOutAlt } from '../../../node_modules/react-icons/fa';
 
 
 const Navigation = ({onRouteChange, isSignedIn}) => {
@@ -38,7 +38,7 @@ const Navigation = ({onRouteChange, isSignedIn}) => {
                 <NavbarBrand className="NavbarBrand" href="">uniVResity</NavbarBrand>
                   <Nav className="ml-auto" navbar>
                   <NavLink>
-                <p style={{cursor:'pointer'}} onClick={() => onRouteChange('createroom')}><FaChalkboardTeacher/> Create Room</p>
+                <p style={{cursor:'pointer'}} onClick={() => onRouteChange('/createroom')}><FaChalkboardTeacher/> Create A New Session</p>
                   </NavLink>
               <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle nav caret>
@@ -46,14 +46,14 @@ const Navigation = ({onRouteChange, isSignedIn}) => {
                 </DropdownToggle>
                 <DropdownMenu right>
                   <DropdownItem>
-                    Option 1
+                    <FaTachometerAlt/> Dashboard
                   </DropdownItem>
                   <DropdownItem>
-                    Option 2
+                    <FaCog/> Settings
                   </DropdownItem>
                   <DropdownItem divider />
                   <DropdownItem>
-                    <p onClick={() => onRouteChange('signout')}>Sign out</p>
+                    <p onClick={() => onRouteChange('signout')}><FaSignOutAlt/> Sign out</p>
                   </DropdownItem>
                 </DropdownMenu>
               </UncontrolledDropdown>

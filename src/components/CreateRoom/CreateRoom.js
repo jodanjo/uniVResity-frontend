@@ -1,22 +1,28 @@
 import React from 'react';
-import { Button, Form, FormGroup, Label, Input, FormText, Card } from 'reactstrap';
+import { Button, Form, FormGroup, Label, Input, FormText, Col, Container, Row } from 'reactstrap';
 
 
 class Createroom extends React.Component {
   render() {
     return (
-        <div style={{paddingLeft:'10px', paddingRight:'10px', marginTop:'30px', marginLeft:'10px', marginRight:'10px'}}>
-    <Card style={{paddingLeft:'10px', paddingRight:'10px', marginTop:'30px', marginLeft:'10px', marginRight:'10px', boxShadow: '5px 10px 18px #888888'}}>
+        <div style={{paddingLeft:'10px', paddingRight:'10px', marginTop:'30px', marginLeft:'10px', marginRight:'10px', textAlign:'left'}}>
       <Form>
+        <Container>
           <h3 style={{marginBottom:'30px', marginTop:'10px'}}>Project Details</h3>
+          <Row>
+          <Col md='6'>
         <FormGroup>
           <Label for="title">Project Title</Label>
           <Input type="text" name="title" id="title" placeholder="Enter the name of your project" required/>
         </FormGroup>
+        </Col>
+        <Col md='6'>
         <FormGroup>
           <Label for="subject">Subject</Label>
           <Input type="text" name="subject" id="subject" placeholder="Enter the subject" required/>
         </FormGroup>
+        </Col>
+        </Row>
         <FormGroup>
           <Label for="overview">Brief Overview</Label>
           <Input type="text" maxlength="250" name="overview" id="overview" placeholder="Overview of your project.  Keep it short and sweet" required/>
@@ -47,9 +53,10 @@ class Createroom extends React.Component {
             </Label>
           </FormGroup>
           </FormGroup>
-        <Button color = "success" style={{marginBottom:'15px'}}>Create Room</Button>
+        <Button color = "success" style={{marginBottom:'15px'}}>Create Session</Button>
+        </Container>
       </Form>
-      </Card>
+ 
       </div>
     );
   }

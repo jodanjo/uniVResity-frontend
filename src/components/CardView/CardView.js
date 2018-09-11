@@ -1,6 +1,7 @@
 import React from 'react'; 
 import { Card, CardImg, CardText, CardBody,
     CardTitle, CardSubtitle, Button } from 'reactstrap';
+import { FaSave } from '../../../node_modules/react-icons/fa';
 
     const CardView = ({name, email, id})  => {
         return (
@@ -10,8 +11,9 @@ import { Card, CardImg, CardText, CardBody,
               <CardBody>
                 <CardTitle>{name}</CardTitle>
                 <CardSubtitle>{email}</CardSubtitle>
-                <CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
-                <Button color='success'>Enter</Button>
+                <CardText style={{textAlign:'left', marginTop:'10px'}}>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
+                <Button outline color='primary'>Enter</Button>
+                <Button style={{marginLeft: '10px'}} outline color='secondary'><FaSave/> Save</Button>
               </CardBody>
             </Card>
           </div>
