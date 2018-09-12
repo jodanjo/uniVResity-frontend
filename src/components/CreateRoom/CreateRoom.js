@@ -53,7 +53,7 @@ class Createroom extends React.Component {
             </Label>
           </FormGroup>
           </FormGroup>
-        <Button color = "success" style={{marginBottom:'15px'}}>Create Session</Button>
+        <Button color = "success" style={{marginBottom:'15px'}}>Create Stream</Button>
         </Container>
       </Form>
  

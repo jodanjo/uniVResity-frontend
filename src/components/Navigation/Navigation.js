@@ -10,7 +10,7 @@ import {
   DropdownMenu,
   Button,
   DropdownItem } from 'reactstrap';
-import { FaUserCircle, FaSignInAlt, FaChalkboardTeacher, FaDashcube, FaTachometerAlt, FaCog, FaSignOutAlt } from '../../../node_modules/react-icons/fa';
+import { FaUserCircle, FaSignInAlt, FaChalkboardTeacher, FaTachometerAlt, FaCog, FaSignOutAlt } from '../../../node_modules/react-icons/fa';
 
 
 const Navigation = ({onRouteChange, isSignedIn}) => {
@@ -38,7 +38,7 @@ const Navigation = ({onRouteChange, isSignedIn}) => {
                 <NavbarBrand className="NavbarBrand" href="">uniVResity</NavbarBrand>
                   <Nav className="ml-auto" navbar>
                   <NavLink>
-                  <Button outline color="success" style={{height:'40px', marginTop:'5px'}}><p style={{cursor:'pointer'}} onClick={() => onRouteChange('/createroom')}><FaChalkboardTeacher/> Create A New Session</p></Button>
+                  <Button outline color="danger" style={{height:'40px', marginTop:'5px'}}><p style={{cursor:'pointer'}} onClick={() => onRouteChange('/createroom')}><FaChalkboardTeacher/> Create A New Stream</p></Button>
                   </NavLink>
               <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle style={{ marginTop: '15px'}} nav caret>

@@ -13,7 +13,7 @@ import { FaSave } from '../../../node_modules/react-icons/fa';
                 <CardSubtitle>{email}</CardSubtitle>
                 <CardText style={{textAlign:'left', marginTop:'10px'}}>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
                 <Button outline color='primary'>Enter</Button>
-                <Button style={{marginLeft: '10px'}} outline color='secondary'><FaSave/> Save</Button>
+                <Button style={{marginLeft: '10px'}} outline color='link'><FaSave/> Save</Button>
               </CardBody>
             </Card>
           </div>
