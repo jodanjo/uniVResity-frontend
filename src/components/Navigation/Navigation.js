@@ -38,10 +38,10 @@ const Navigation = ({onRouteChange, isSignedIn}) => {
                 <NavbarBrand className="NavbarBrand" href="">uniVResity</NavbarBrand>
                   <Nav className="ml-auto" navbar>
                   <NavLink>
-                <p style={{cursor:'pointer'}} onClick={() => onRouteChange('/createroom')}><FaChalkboardTeacher/> Create A New Session</p>
+                  <Button outline color="success" style={{height:'40px', marginTop:'5px'}}><p style={{cursor:'pointer'}} onClick={() => onRouteChange('/createroom')}><FaChalkboardTeacher/> Create A New Session</p></Button>
                   </NavLink>
               <UncontrolledDropdown nav inNavbar>
-                <DropdownToggle nav caret>
+                <DropdownToggle style={{ marginTop: '15px'}} nav caret>
                   <FaUserCircle size={18} color={'dodgerblue'}/>
                 </DropdownToggle>
                 <DropdownMenu right>
