@@ -38,7 +38,7 @@ const Navigation = ({onRouteChange, isSignedIn}) => {
                 <NavbarBrand className="NavbarBrand" href="">uniVResity</NavbarBrand>
                   <Nav className="ml-auto" navbar>
                   <NavLink>
-                  <Button outline color="success" style={{height:'40px', marginTop:'5px'}}><p style={{cursor:'pointer'}} onClick={() => onRouteChange('/createroom')}><FaChalkboardTeacher/> Create A New Session</p></Button>
+                  <Button outline color="success" style={{height:'40px', marginTop:'5px'}}><p style={{cursor:'pointer'}} onClick={() => onRouteChange('createstream')}><FaChalkboardTeacher/> Create A New Stream</p></Button>
                   </NavLink>
               <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle style={{ marginTop: '15px'}} nav caret>
@@ -46,10 +46,10 @@ const Navigation = ({onRouteChange, isSignedIn}) => {
                 </DropdownToggle>
                 <DropdownMenu right>
                   <DropdownItem>
-                    <FaTachometerAlt/> Dashboard
+                    <p onClick={() => onRouteChange('dashboard')}><FaTachometerAlt/> Dashboard</p>
                   </DropdownItem>
                   <DropdownItem>
-                    <FaCog/> Settings
+                    <p onClick={() => onRouteChange('settings')}><FaCog/> Settings</p>
                   </DropdownItem>
                   <DropdownItem divider />
                   <DropdownItem>

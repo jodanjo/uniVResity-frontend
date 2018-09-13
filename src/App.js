@@ -8,12 +8,10 @@ import './App.css';
 import './components/Login/Login.css';
 import './components/Navigation/Navigation.css';
 import './components/CardView/CardView.css';
-import Room from './Room.test';
-import Createroom from './components/Createroom/Createroom';
-
-
-
-
+import {streams} from './streams';
+import CreateStream from './components/CreateStream/CreateStream';
+import Dashboard from './components/Dashboard/Dashboard';
+import Settings from './components/Settings/Settings';
 
 class App extends Component {
     constructor() {
@@ -21,17 +19,17 @@ class App extends Component {
       this.state = {
         route: 'home',
         isSignedIn: true,
-        robots: [],
+        streams: streams,
         searchfield: ''
       }
     }
-
+/*
     componentDidMount(){
       fetch('https://jsonplaceholder.typicode.com/users')
       .then(response=> response.json())
-      .then(users => this.setState({robots : users}));  
+      .then(users => this.setState({streams : users}));  
     }
-  
+*/  
     onSearchChange = (event) => {
       this.setState({ searchfield: event.target.value })
     }
@@ -39,6 +37,7 @@ class App extends Component {
     onRouteChange = (route) => {
       if (route === 'signout') {
         this.setState({isSignedIn: false})
+        route = 'home';
       } else if (route === 'home') {
         this.setState({isSignedIn: true})
       } 
@@ -46,8 +45,8 @@ class App extends Component {
     }
 
     render() {
-      const filteredRobots  = this.state.robots.filter(robot => {
-        return robot.name.toLowerCase().includes(this.state.searchfield.toLowerCase())
+      const filteredStreams  = this.state.streams.filter(stream => {
+        return stream.course_title.toLowerCase().includes(this.state.searchfield.toLowerCase())
       })
 
 
@@ -56,21 +55,32 @@ class App extends Component {
       return (
         <div className="App"> 
       <Navigation isSignedIn={isSignedIn} onRouteChange={this.onRouteChange} />
-          { route === 'home' 
+         { route === 'home' 
             ? <div>
-              <Searchbar searchChange={this.onSearchChange}/>
-              <CardList robots = {filteredRobots}/>
-              <Createroom/>
+                <Searchbar searchChange={this.onSearchChange}/>
+                <CardList streams = {filteredStreams}/>
               </div>
             : (
                route === 'login' 
-               ? <Login loadUser={this.loadUser} onRouteChange={this.onRouteChange}/>
-               : <Register loadUser={this.loadUser} onRouteChange={this.onRouteChange}/>
-               
-            )
-
+                ? <Login loadUser={this.loadUser} onRouteChange={this.onRouteChange}/>
+                : (
+                    route ==='register'
+                      ? <Register loadUser={this.loadUser} onRouteChange={this.onRouteChange}/>
+                      : ( 
+                        route === 'createstream'    
+                        ? <CreateStream loadUser={this.loadUser} onRouteChange={this.onRouteChange}/> 
+                        : (
+                          route === 'dashboard'
+                          ? <Dashboard loadUser={this.loadUser} onRouteChange={this.onRouteChange}/>
+                          : (
+                            <Settings loadUser={this.loadUser} onRouteChange={this.onRouteChange}/>
+                            )
+                          )
+                        )
+                  )
+              )
           }
-          <Room/>
+
         </div>
         
       );

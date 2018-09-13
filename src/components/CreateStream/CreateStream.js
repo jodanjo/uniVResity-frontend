@@ -2,18 +2,18 @@ import React from 'react';
 import { Button, Form, FormGroup, Label, Input, FormText, Col, Container, Row } from 'reactstrap';
 
 
-class Createroom extends React.Component {
+class CreateStream extends React.Component {
   render() {
     return (
         <div style={{paddingLeft:'10px', paddingRight:'10px', marginTop:'30px', marginLeft:'10px', marginRight:'10px', textAlign:'left'}}>
       <Form>
         <Container>
-          <h3 style={{marginBottom:'30px', marginTop:'10px'}}>Project Details</h3>
+          <h3 style={{marginBottom:'30px', marginTop:'10px'}}>Course Details</h3>
           <Row>
           <Col md='6'>
         <FormGroup>
-          <Label for="title">Project Title</Label>
-          <Input type="text" name="title" id="title" placeholder="Enter the name of your project" required/>
+          <Label for="title">Course Title</Label>
+          <Input type="text" name="title" id="title" placeholder="Enter the name of your course" required/>
         </FormGroup>
         </Col>
         <Col md='6'>
@@ -25,7 +25,7 @@ class Createroom extends React.Component {
         </Row>
         <FormGroup>
           <Label for="overview">Brief Overview</Label>
-          <Input type="text" maxlength="250" name="overview" id="overview" placeholder="Overview of your project.  Keep it short and sweet" required/>
+          <Input type="text" maxLength="250" name="overview" id="overview" placeholder="Overview of your course.  Keep it short and sweet" required/>
         </FormGroup>
         <FormGroup>
           <Label for="description">Full Description</Label>
@@ -53,7 +53,7 @@ class Createroom extends React.Component {
             </Label>
           </FormGroup>
           </FormGroup>
-        <Button color = "success" style={{marginBottom:'15px'}}>Create Session</Button>
+        <Button color = "success" style={{marginBottom:'15px'}}>Create Stream</Button>
         </Container>
       </Form>
  
@@ -62,4 +62,4 @@ class Createroom extends React.Component {
   }
 }
 
-export default Createroom;
+export default CreateStream;
