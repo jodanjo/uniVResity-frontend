@@ -12,7 +12,7 @@ import { FaSave } from '../../../node_modules/react-icons/fa';
                 <CardTitle>{course_title}</CardTitle>
                 <CardText style={{textAlign:'left', marginTop:'10px'}}>{course_description}</CardText>
                 <Button outline color='primary'>Enter</Button>
-                <Button style={{marginLeft: '10px'}} outline color='secondary'><FaSave/> Save</Button>
+                <Button style={{marginLeft: '10px'}} outline color='link'><FaSave/> Save</Button>
               </CardBody>
             </Card>
           </div>
