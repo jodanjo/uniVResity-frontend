@@ -92,8 +92,8 @@ import {
                 />   
                 </FormGroup>
               </Col>
-              <Button color="primary" block>Submit</Button>
-              <Button color="danger" block onClick={() => onRouteChange('register')}>New to uniVresity? Register!</Button>
+              <Button color="success" block>Submit</Button>
+              <Button outline color="secondary" block onClick={() => onRouteChange('register')}>New to uniVresity? Register!</Button>
               
           </Form>
           </div>
