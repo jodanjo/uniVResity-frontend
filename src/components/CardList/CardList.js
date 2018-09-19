@@ -4,6 +4,10 @@ import CardView from '../CardView/CardView';
 const CardList = ({ streams }) => {
 	return (
 		<div>
+			<div style={{textAlign:'left', paddingLeft:'20px', paddingRight:'20px'}}>
+			<p >All Streams</p>
+            <hr/>
+			</div>
 			{streams.map((user, i) => {
 			return (
 		<CardView 

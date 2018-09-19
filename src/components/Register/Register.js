@@ -68,6 +68,7 @@ import {
       }
     render() {
         const { email, password, name } = this.state;
+        const { onRouteChange } = this.props;
         const isEnabled = this.state.validate.emailState === 'has-success' && this.state.validate.passwordState === 'has-success' && this.state.validate.nameState === 'has-success';
         return (
           <Container className="app">
@@ -149,12 +150,15 @@ import {
           <Input type="textarea" name="text" id="exampleText" placeholder="Tell us a little about yourself" />
         </FormGroup>
         </Col>
-              <Button disabled={!isEnabled} color="primary">Join</Button>
-           
+              <Button disabled={!isEnabled} color="primary" block>Join</Button>
+              <Button outline color="secondary" block onClick={() => onRouteChange('login')}>Already have an account? Sign in!</Button>
          </Form>
-          </Container>
+         </Container>
+
         );
+
       }
+ 
     }
     
   

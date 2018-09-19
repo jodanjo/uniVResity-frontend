@@ -20,7 +20,7 @@ const Navigation = ({onRouteChange, isSignedIn}) => {
         <Navbar className="Navbar" color="light" light expand="md">
           <NavbarBrand className="NavbarBrand" href="">uniVResity</NavbarBrand>
             <Nav className="ml-auto" navbar>    
-              <NavItem>
+                  <NavItem>
               <NavLink>
                 <p style={{cursor:'pointer', marginTop:'5px'}} onClick={() => onRouteChange('register')}>Register</p>
                   </NavLink>                  
@@ -37,6 +37,8 @@ const Navigation = ({onRouteChange, isSignedIn}) => {
                 <Navbar className="Navbar" color="light" light expand="md">
                 <NavbarBrand className="NavbarBrand" href="">uniVResity</NavbarBrand>
                   <Nav className="ml-auto" navbar>
+
+
                   <NavLink>
                   <Button outline color="danger" style={{height:'40px', marginTop:'5px'}}><p style={{cursor:'pointer'}} onClick={() => onRouteChange('createstream')}><FaChalkboardTeacher/> Create A New Stream</p></Button>
                   </NavLink>
