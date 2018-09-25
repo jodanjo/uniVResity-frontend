@@ -11,6 +11,8 @@ import {
           this.state = {
           'email': '',
           'password': '',
+          'name': '',
+          'bio': '',
           validate: {
             emailState: '',
             passwordState: '',
@@ -67,12 +69,12 @@ import {
         console.log(`Email: ${ this.state.email }`)
       }
     render() {
-        const { email, password, name } = this.state;
+        const { email, password, name, bio } = this.state;
         const { onRouteChange } = this.props;
         const isEnabled = this.state.validate.emailState === 'has-success' && this.state.validate.passwordState === 'has-success' && this.state.validate.nameState === 'has-success';
         return (
           <Container className="app">
-            <h2>Register</h2>
+            <h3>Register</h3>
             <Form className="form" onSubmit={ (e) => this.submitForm(e) }>
             <Col>
                 <FormGroup>
@@ -147,7 +149,17 @@ import {
                 </FormGroup>
               <FormGroup>
           <Label for="exampleText">Bio (optional)</Label>
-          <Input type="textarea" name="text" id="exampleText" placeholder="Tell us a little about yourself" />
+          <Input 
+            type="textarea" 
+            name="bio" 
+            id="bio" 
+            placeholder="Tell us a little about yourself" 
+            value={ bio }
+            onChange={ (e) => {
+                        this.handleChange(e)
+                      } }
+            
+            />
         </FormGroup>
         </Col>
               <Button disabled={!isEnabled} color="primary" block>Join</Button>

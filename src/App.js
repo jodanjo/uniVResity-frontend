@@ -18,7 +18,7 @@ class App extends Component {
       super();
       this.state = {
         route: 'home',
-        isSignedIn: true,
+        isSignedIn: false,
         streams: streams,
         searchfield: ''
       }
