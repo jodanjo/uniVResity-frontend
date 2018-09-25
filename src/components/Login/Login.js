@@ -2,8 +2,9 @@ import React from 'react';
 import {
     Container, Col, Form,
     FormGroup, Label, Input,
-    Button, FormFeedback
+    Button, FormFeedback, InputGroupAddon, InputGroup
   } from 'reactstrap';
+  import { FaLock } from '../../../node_modules/react-icons/fa';
   
   
 
@@ -66,9 +67,11 @@ import {
       }
     render() {
         const { email, password } = this.state;
+        const { onRouteChange } = this.props;
         return (
-          <Container className="app">
-            <h2>Sign In</h2>
+          <Container className="app" style={{background:'white'}}>
+          <div>
+            <h3>Sign In</h3>
             <Form className="form" onSubmit={ (e) => this.submitForm(e) }>
               <Col>
                 <FormGroup>
@@ -97,19 +100,21 @@ import {
               </Col>
               <Col>
                 <FormGroup>
-                  <Label for="examplePassword">Password</Label>
+                  <Label for="examplePassword">Password</Label>        
                   <Input
                     type="password"
                     name="password"
                     id="examplePassword"
                     placeholder="Password"
                     value={ password }
-                    onChange={ (e) => this.handleChange(e) }
-                />
+                    onChange={ (e) => this.handleChange(e) }  
+                />   
                 </FormGroup>
               </Col>
-              <Button color="success" onClick={this.onSubmitSignIn} >Submit</Button>
+              <Button color="success" onClick={this.onSubmitSignIn} block>Submit</Button>
+              <Button outline color="secondary" block onClick={() => onRouteChange('register')}>New to uniVresity? Register!</Button>
           </Form>
+          </div>
           </Container>
         );
       }

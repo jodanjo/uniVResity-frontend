@@ -8,13 +8,13 @@
   width: 600px;
   margin-top: 100px;
   box-shadow: 5px 10px 18px #888888;
-  
 }
 
 
   
   .form {
     padding: 1em;
+    
   }
   
   label {
@@ -24,7 +24,6 @@
   
   button {
     justify-content: flex-end;
-    margin-bottom: 5px;
   }
   
   .App-title {
@@ -35,8 +34,4 @@
     font-size: large;
   }
   
-  @keyframes App-logo-spin {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-  }
   
