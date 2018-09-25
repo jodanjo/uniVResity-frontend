@@ -20,6 +20,25 @@ import {
         this.handleChange = this.handleChange.bind(this);
       
       }
+
+
+      onSubmitSignIn = () => {
+    fetch('http://localhost:3000/login', {
+      method: 'post',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        email: this.state.email,
+        password: this.state.password
+      })
+    })
+      .then(response => response.json())
+      .then(user => {
+        if (user.id) {
+          this.props.loadUser(user)
+          this.props.onRouteChange('home');
+        }
+      })
+  }
     
       validateEmail(e) {
         const emailRex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -89,7 +108,7 @@ import {
                 />
                 </FormGroup>
               </Col>
-              <Button color="success">Submit</Button>
+              <Button color="success" onClick={this.onSubmitSignIn} >Submit</Button>
           </Form>
           </Container>
         );

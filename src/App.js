@@ -18,11 +18,22 @@ class App extends Component {
       super();
       this.state = {
         route: 'home',
-        isSignedIn: true,
+        isSignedIn: false,
         streams: streams,
         searchfield: ''
       }
     }
+
+    loadUser = (data) => {
+    this.setState({user: {
+      id: data.id,
+      name: data.name,
+      email: data.email,
+      bio: data.bio,
+      joined: data.joined
+    }})
+  }
+
 /*
     componentDidMount(){
       fetch('https://jsonplaceholder.typicode.com/users')

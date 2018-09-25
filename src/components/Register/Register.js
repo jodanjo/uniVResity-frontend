@@ -11,6 +11,7 @@ import {
           this.state = {
           'email': '',
           'password': '',
+          'bio': '',
           validate: {
             emailState: '',
             passwordState: '',
@@ -19,6 +20,26 @@ import {
         }
         this.handleChange = this.handleChange.bind(this);
       }
+
+      onSubmitSignIn = () => {
+    fetch('http://localhost:3000/register', {
+      method: 'post',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        email: this.state.email,
+        password: this.state.password,
+        name: this.state.name,
+        bio: this.state.bio
+      })
+    })
+      .then(response => response.json())
+      .then(user => {
+        if (user) {
+          this.props.loadUser(user)
+          this.props.onRouteChange('home');
+        }
+      })
+  }
     
       validateEmail(e) {
         const emailRex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -149,7 +170,7 @@ import {
           <Input type="textarea" name="text" id="exampleText" placeholder="Tell us a little about yourself" />
         </FormGroup>
         </Col>
-              <Button disabled={!isEnabled} color="primary">Join</Button>
+              <Button disabled={!isEnabled} color="primary" onClick={this.onSubmitSignIn} >Join</Button>
            
          </Form>
           </Container>
