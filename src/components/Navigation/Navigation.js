@@ -35,7 +35,7 @@ const Navigation = ({onRouteChange, isSignedIn}) => {
       } else {
               return (
                 <Navbar className="Navbar" color="light" light expand="md">
-                <NavbarBrand className="NavbarBrand" href="">uniVResity</NavbarBrand>
+                <NavbarBrand className="NavbarBrand" onClick={() => onRouteChange('home')}>uniVResity</NavbarBrand>
                   <Nav className="ml-auto" navbar>
 
 
