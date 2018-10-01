@@ -2,10 +2,9 @@ import React from 'react';
 import {
     Container, Col, Form,
     FormGroup, Label, Input,
-    Button, FormFeedback, InputGroupAddon, InputGroup
+    Button, FormFeedback
   } from 'reactstrap';
-  import { FaLock } from '../../../node_modules/react-icons/fa';
-  
+
   
 
   class Login extends React.Component {
@@ -23,7 +22,7 @@ import {
       }
 
 
-      onSubmitSignIn = () => {
+    onSubmitSignIn = () => {
     fetch('http://localhost:3000/login', {
       method: 'post',
       headers: {'Content-Type': 'application/json'},

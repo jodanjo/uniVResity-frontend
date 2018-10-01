@@ -1,7 +1,8 @@
 import React from 'react';
 import {
-    Card, CardBody, CardImg, CardText, CardTitle, Container, Row, Col, UncontrolledAlert, Button
+    Card, CardBody, CardImg, CardText, CardTitle, Container, Row, Col, UncontrolledAlert
   } from 'reactstrap';
+
   
   
 
@@ -12,19 +13,21 @@ import {
       }
     
           render() {
+            const { name, bio } = this.props;
         return (
             <div>
             <Container>
           <Row>
           <Col lg='4' md='6'>
+
             <Card style={{ width: '300px', marginTop:'20px', marginLeft:'10px', marginBottom:'5px'}}>
-              <CardImg top width="100%" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180" alt="Card image cap" />
+            <CardImg top width="100%" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180" alt="Card image cap" />
               <CardBody>
-                <CardTitle style={{fontWeight:'500', fontSize:'24px'}}>User Name</CardTitle>
-                <CardText style={{textAlign:'left', marginTop:'10px'}}>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
+                <CardTitle style={{fontWeight:'500', fontSize:'24px'}}>{`${name}`}</CardTitle>
+                <CardText style={{textAlign:'left', marginTop:'10px'}}>{`${bio}`}</CardText>
               </CardBody>
-              <Button style={{marginBottom:'5px'}}  color="primary" block >Edit Bio</Button>
             </Card>
+
             </Col>
           
           <Col lg='8' md='6'>

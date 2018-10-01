@@ -13,14 +13,22 @@ import CreateStream from './components/CreateStream/CreateStream';
 import Dashboard from './components/Dashboard/Dashboard';
 import Settings from './components/Settings/Settings';
 
+
 class App extends Component {
     constructor() {
       super();
       this.state = {
         route: 'home',
         isSignedIn: false,
+        user: {
+          id: '',
+          name: '',
+          email: '',
+          bio: '',
+          joined: ''
+        },
         streams: streams,
-        searchfield: ''
+        searchfield: '',
       }
     }
 
@@ -65,7 +73,10 @@ class App extends Component {
 
       return (
         <div className="App"> 
-      <Navigation isSignedIn={isSignedIn} onRouteChange={this.onRouteChange} />
+      <Navigation loadUser={this.loadUser} isSignedIn={isSignedIn} onRouteChange={this.onRouteChange} 
+      name={this.state.user.name}
+      />
+      
          { route === 'home' 
             ? <div>
                 <Searchbar searchChange={this.onSearchChange}/>
@@ -82,7 +93,10 @@ class App extends Component {
                         ? <CreateStream loadUser={this.loadUser} onRouteChange={this.onRouteChange}/> 
                         : (
                           route === 'dashboard'
-                          ? <Dashboard loadUser={this.loadUser} onRouteChange={this.onRouteChange}/>
+                          ? <Dashboard loadUser={this.loadUser} onRouteChange={this.onRouteChange}
+                          name={this.state.user.name}
+                          bio={this.state.user.bio}
+                          />
                           : (
                             <Settings loadUser={this.loadUser} onRouteChange={this.onRouteChange}/>
                             )

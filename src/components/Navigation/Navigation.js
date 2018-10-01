@@ -13,7 +13,7 @@ import {
 import { FaUserCircle, FaSignInAlt, FaChalkboardTeacher, FaTachometerAlt, FaCog, FaSignOutAlt } from '../../../node_modules/react-icons/fa';
 
 
-const Navigation = ({onRouteChange, isSignedIn}) => {
+const Navigation = ({onRouteChange, isSignedIn, name}) => {
   if (!isSignedIn) {
     return (
       <div>
@@ -35,7 +35,7 @@ const Navigation = ({onRouteChange, isSignedIn}) => {
       } else {
               return (
                 <Navbar className="Navbar" color="light" light expand="md">
-                <NavbarBrand className="NavbarBrand" href="">uniVResity</NavbarBrand>
+                <NavbarBrand className="NavbarBrand" onClick={() => onRouteChange('home')} style={{cursor: 'pointer'}}>uniVResity</NavbarBrand>
                   <Nav className="ml-auto" navbar>
 
 
@@ -44,7 +44,7 @@ const Navigation = ({onRouteChange, isSignedIn}) => {
                   </NavLink>
               <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle style={{ marginTop: '15px'}} nav caret>
-                  <FaUserCircle size={18} color={'dodgerblue'}/>
+                  <FaUserCircle size={18} color={'dodgerblue'}/> {`${name}`}
                 </DropdownToggle>
                 <DropdownMenu right>
                   <DropdownItem>
