@@ -2,9 +2,9 @@ import React from 'react';
 import {
     Container, Col, Form,
     FormGroup, Label, Input,
-    Button, FormFeedback, InputGroupAddon, InputGroup
+    Button, FormFeedback
   } from 'reactstrap';
-  import { FaLock } from '../../../node_modules/react-icons/fa';
+
   
   
 

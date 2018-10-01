@@ -23,7 +23,13 @@ class App extends Component {
         route: '/',
         isSignedIn: false,
         streams: streams,
-        searchfield: ''
+        searchfield: '',
+        user: {
+          id: '',
+          name: '',
+          email: '',
+          joined: ''
+        }
       }
     }
 
@@ -79,7 +85,9 @@ class App extends Component {
       return (
         <BrowserRouter>
         <div className="App"> 
-      <Navigation isSignedIn={isSignedIn} onRouteChange={this.onRouteChange} />
+      <Navigation isSignedIn={isSignedIn} onRouteChange={this.onRouteChange}
+      name={this.state.user.name}
+      />
          <Switch>
             <Route exact path='/' render={() => (
               <div>
@@ -96,7 +104,12 @@ class App extends Component {
             <Route path='/createstream' render={() => (
               <CreateStream loadStream={this.loadStream} onRouteChange={this.onRouteChange}/>
             )}/>
-            <Route path='/dashboard' component={Dashboard} />
+            <Route path='/dashboard' render={() => (
+              <Dashboard loadUser={this.loadUser}
+              name={this.state.user.name}
+              bio={this.state.user.bio}
+              /> 
+            )} />
             <Route path='/settings' component={Settings} />
             <Route path='/signout' />
             <Route component={Error} />
