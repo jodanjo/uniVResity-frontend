@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { BrowserRouter, Route, Switch, Redirect, withRouter } from 'react-router-dom';
 import Login from './components/Login/Login';
 import Navigation from './components/Navigation/Navigation';
 import Register from './components/Register/Register';
@@ -12,6 +13,8 @@ import {streams} from './streams';
 import CreateStream from './components/CreateStream/CreateStream';
 import Dashboard from './components/Dashboard/Dashboard';
 import Settings from './components/Settings/Settings';
+import Error from './components/Error/Error';
+
 
 
 class App extends Component {
@@ -41,6 +44,16 @@ class App extends Component {
       joined: data.joined
     }})
   }
+
+  loadStream = (data) => {
+    this.setState({stream: {
+      title: data.title,
+      subject: data.subject,
+      headline: data.headline,
+      description: data.description
+    }})
+  }
+
 
 /*
     componentDidMount(){
@@ -72,41 +85,38 @@ class App extends Component {
       const { isSignedIn, route } = this.state;
 
       return (
+        <BrowserRouter>
         <div className="App"> 
-      <Navigation loadUser={this.loadUser} isSignedIn={isSignedIn} onRouteChange={this.onRouteChange} 
+      <Navigation isSignedIn={isSignedIn} onRouteChange={this.onRouteChange} 
       name={this.state.user.name}
       />
-      
-         { route === 'home' 
-            ? <div>
-                <Searchbar searchChange={this.onSearchChange}/>
-                <CardList streams = {filteredStreams}/>
+         <Switch>
+            <Route exact path='/' render={() => (
+              <div>
+              <Searchbar searchChange={this.onSearchChange}/>
+              <CardList streams = {filteredStreams}/>
               </div>
-            : (
-               route === 'login' 
-                ? <Login loadUser={this.loadUser} onRouteChange={this.onRouteChange}/>
-                : (
-                    route ==='register'
-                      ? <Register loadUser={this.loadUser} onRouteChange={this.onRouteChange}/>
-                      : ( 
-                        route === 'createstream'    
-                        ? <CreateStream loadUser={this.loadUser} onRouteChange={this.onRouteChange}/> 
-                        : (
-                          route === 'dashboard'
-                          ? <Dashboard loadUser={this.loadUser} onRouteChange={this.onRouteChange}
-                          name={this.state.user.name}
-                          bio={this.state.user.bio}
-                          />
-                          : (
-                            <Settings loadUser={this.loadUser} onRouteChange={this.onRouteChange}/>
-                            )
-                          )
-                        )
-                  )
-              )
-          }
-
+            )}/>
+            <Route path='/register' render={() => (
+              <Register loadUser={this.loadUser} onRouteChange={this.onRouteChange}/>
+            )}/>
+            <Route path='/login' render={() => (
+              <Login loadUser={this.loadUser} onRouteChange={this.onRouteChange}/>
+            )}/>
+            <Route path='/createstream' render={() => (
+              <CreateStream loadStream={this.loadStream} onRouteChange={this.onRouteChange}/>
+            )}/>
+            <Route path='/dashboard' component={Dashboard}
+              name={this.state.user.name}
+              bio={this.state.user.bio}
+            />
+            <Route path='/settings' component={Settings} />
+            <Route path='/signout' />
+            <Route component={Error} />
+            
+         </Switch>
         </div>
+        </BrowserRouter>
         
       );
     }

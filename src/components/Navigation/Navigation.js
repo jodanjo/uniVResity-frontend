@@ -1,10 +1,10 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 import {
   Navbar,
   NavbarBrand,
   Nav,
   NavItem,
-  NavLink,
   UncontrolledDropdown,
   DropdownToggle,
   DropdownMenu,
@@ -18,16 +18,16 @@ const Navigation = ({onRouteChange, isSignedIn, name}) => {
     return (
       <div>
         <Navbar className="Navbar" color="light" light expand="md">
-          <NavbarBrand className="NavbarBrand" href="">uniVResity</NavbarBrand>
+          <NavbarBrand className="NavbarBrand" href="/">uniVResity</NavbarBrand>
             <Nav className="ml-auto" navbar>    
                   <NavItem>
-              <NavLink>
-                <p style={{cursor:'pointer', marginTop:'5px'}} onClick={() => onRouteChange('register')}>Register</p>
-                  </NavLink>                  
+              <Link to="/register">
+                <Button style={{height:'40px', marginTop:'5px'}}><p>Register</p></Button>
+              </Link>
               </NavItem>
-              <NavItem>
-              <Button color="danger" style={{height:'40px', marginTop:'5px'}}><p style={{cursor:'pointer'}} onClick={() => onRouteChange('login')}><FaSignInAlt/> Sign in</p></Button>
-              </NavItem>
+              <Link to="/login">
+              <Button color="danger" style={{height:'40px', marginTop:'5px'}}><p><FaSignInAlt/> Sign in</p></Button>
+              </Link>
               </Nav>
             </Navbar>
       </div>
@@ -35,27 +35,25 @@ const Navigation = ({onRouteChange, isSignedIn, name}) => {
       } else {
               return (
                 <Navbar className="Navbar" color="light" light expand="md">
-                <NavbarBrand className="NavbarBrand" onClick={() => onRouteChange('home')} style={{cursor: 'pointer'}}>uniVResity</NavbarBrand>
+                <NavbarBrand className="NavbarBrand" href="/">uniVResity</NavbarBrand>
                   <Nav className="ml-auto" navbar>
-
-
-                  <NavLink>
-                  <Button outline color="danger" style={{height:'40px', marginTop:'5px'}}><p style={{cursor:'pointer'}} onClick={() => onRouteChange('createstream')}><FaChalkboardTeacher/> Create A New Stream</p></Button>
-                  </NavLink>
+                  <Link to="/createstream">
+                  <Button outline color="danger" style={{height:'40px', marginTop:'5px'}}><p><FaChalkboardTeacher/> Create A New Stream</p></Button>
+                  </Link>
               <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle style={{ marginTop: '15px'}} nav caret>
                   <FaUserCircle size={18} color={'dodgerblue'}/> {`${name}`}
                 </DropdownToggle>
                 <DropdownMenu right>
                   <DropdownItem>
-                    <p onClick={() => onRouteChange('dashboard')}><FaTachometerAlt/> Dashboard</p>
+                    <Link to="/dashboard"><p><FaTachometerAlt/> Dashboard</p> </Link>
                   </DropdownItem>
                   <DropdownItem>
-                    <p onClick={() => onRouteChange('settings')}><FaCog/> Settings</p>
+                    <Link to="settings"><p><FaCog/> Settings</p> </Link>
                   </DropdownItem>
                   <DropdownItem divider />
                   <DropdownItem>
-                    <p onClick={() => onRouteChange('signout')}><FaSignOutAlt/> Sign out</p>
+                    <Link to="signout"><p><FaSignOutAlt/> Sign out</p></Link>
                   </DropdownItem>
                 </DropdownMenu>
               </UncontrolledDropdown>
