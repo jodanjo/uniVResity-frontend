@@ -106,10 +106,11 @@ class App extends Component {
             <Route path='/createstream' render={() => (
               <CreateStream loadStream={this.loadStream} onRouteChange={this.onRouteChange}/>
             )}/>
-            <Route path='/dashboard' component={Dashboard}
+            <Route path='/dashboard' render={() => (
+              <Dashboard loadUser={this.loadUser}
               name={this.state.user.name}
-              bio={this.state.user.bio}
-            />
+              bio={this.state.user.bio}/>
+              )}/>
             <Route path='/settings' component={Settings} />
             <Route path='/signout' />
             <Route component={Error} />
@@ -123,4 +124,4 @@ class App extends Component {
   }
 
 
-export default App;
+  export default App;
