@@ -20,7 +20,7 @@ class App extends Component {
     constructor() {
       super();
       this.state = {
-        route: 'home',
+        route: '/',
         isSignedIn: false,
         streams: streams,
         searchfield: ''
@@ -61,8 +61,8 @@ class App extends Component {
     onRouteChange = (route) => {
       if (route === 'signout') {
         this.setState({isSignedIn: false})
-        route = 'home';
-      } else if (route === 'home') {
+        route = '/';
+      } else if (route === '/') {
         this.setState({isSignedIn: true})
       } 
       this.setState({route: route});

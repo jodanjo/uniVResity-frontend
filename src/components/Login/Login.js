@@ -37,7 +37,7 @@ import {
         if (user.id) {
           this.props.loadUser(user)
           console.log(user.name);
-          this.props.onRouteChange('home');
+          this.props.onRouteChange('/');
           
         }
       })

@@ -5,6 +5,15 @@ import {
     Button, FormFeedback, Row, FormText
   } from 'reactstrap';
 
+const generateURL =() =>{
+  var url = '';
+  const possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  for (var i = 0; i < 10; i++)
+    url += possible.charAt(Math.floor(Math.random() * possible.length));
+  return url;
+}
+
+
 class CreateStream extends React.Component {
       constructor(props) {
         super(props);
@@ -13,6 +22,8 @@ class CreateStream extends React.Component {
           'subject': '',
           'headline': '',
           'description': '',
+          'is_private': 'FALSE',
+          
           validate: {
             titleState: '',
             subjectState: '',
@@ -28,10 +39,13 @@ class CreateStream extends React.Component {
       method: 'post',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
+        url:generateURL(),
         title: this.state.title,
         subject: this.state.subject,
         headline: this.state.headline,
-        description: this.state.description
+        description: this.state.description,
+        is_private: this.state.is_private
+        
       })
     })
       .then(response => response.json())
@@ -44,7 +58,6 @@ class CreateStream extends React.Component {
       })
   }
     
-
 
       validateTitle(e) {
             const titleRex = /^(?=.{3,128}$)/;
@@ -89,10 +102,17 @@ class CreateStream extends React.Component {
       
       handleChange = async (event) => {
         const { target } = event;
-        const value = target.type === 'checkbox' ? target.checked : target.value;
+        const value =  target.value;
         const { name } = target;
         await this.setState({
           [ name ]: value,
+          
+        });
+      }
+
+      handleChangeRadio(event) {
+        this.setState({
+          is_private: event.target.value
         });
       }
     
@@ -102,7 +122,7 @@ class CreateStream extends React.Component {
       
 
   render() {
-    const { title, subject, headline, description } = this.state;
+    const { title, subject, headline, description, is_private } = this.state;
     const { onRouteChange } = this.props;
     const isEnabled = this.state.validate.titleState === 'has-success' 
                    && this.state.validate.subjectState === 'has-success'
@@ -202,7 +222,35 @@ class CreateStream extends React.Component {
             Select an image cover
           </FormText>
         </FormGroup>
-        
+        <FormGroup tag="fieldset">
+          <legend>Select One</legend>
+          <ul className="list-unstyled">
+        <li>
+          <label>
+            <input
+              type="radio"
+              value="TRUE"
+              checked={this.state.is_private === "TRUE"}
+              onChange={ (e) => this.handleChangeRadio(e)}
+            />
+            Private (Students will need your private URL to find your project)
+          </label>
+        </li>
+        <li>
+          <label>
+            <input
+              type="radio"
+              value="FALSE"
+              checked={this.state.is_private === "FALSE"}
+              onChange={ (e) => this.handleChangeRadio(e)}
+            />
+            Public (Anyone can find and view your project)
+          </label>
+        </li>
+      </ul>
+          </FormGroup>
+
+ 
         <Button disabled={!isEnabled} color="primary" onClick={this.onSubmitStream} style={{marginBottom:'15px'}}>Create Stream</Button>
         </Container>
       </Form>
