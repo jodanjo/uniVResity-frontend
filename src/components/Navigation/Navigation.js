@@ -18,7 +18,9 @@ const Navigation = ({onRouteChange, isSignedIn, name}) => {
     return (
       <div>
         <Navbar className="Navbar" color="light" light expand="md">
-          <NavbarBrand className="NavbarBrand" href="/">uniVResity</NavbarBrand>
+          <Link to="/">
+            <Navbar className="NavbarBrand" >uniVResity</Navbar>
+          </Link>
             <Nav className="ml-auto" navbar>    
                   <NavItem>
               <Link to="/register">
@@ -35,7 +37,9 @@ const Navigation = ({onRouteChange, isSignedIn, name}) => {
       } else {
               return (
                 <Navbar className="Navbar" color="light" light expand="md">
-                <NavbarBrand className="NavbarBrand" href="/">uniVResity</NavbarBrand>
+                  <Link to="/">
+                    <Navbar className="NavbarBrand" >uniVResity</Navbar>
+                  </Link>
                   <Nav className="ml-auto" navbar>
                   <Link to="/createstream">
                   <Button outline color="danger" style={{height:'40px', marginTop:'5px'}}><p><FaChalkboardTeacher/> Create A New Stream</p></Button>
