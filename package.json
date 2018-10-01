@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "bootstrap": "^4.1.1",
+    "history": "^4.7.2",
     "knex": "^0.15.2",
     "pg": "^7.4.3",
     "react": "^16.5.0",

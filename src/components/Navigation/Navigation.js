@@ -21,14 +21,14 @@ const Navigation = ({onRouteChange, isSignedIn, name}) => {
           <Link to="/">
             <Navbar className="NavbarBrand" >uniVResity</Navbar>
           </Link>
-            <Nav className="ml-auto" navbar>    
+            <Nav className="ml-auto" navbar>
                   <NavItem>
               <Link to="/register">
-                <Button style={{height:'40px', marginTop:'5px'}}><p>Register</p></Button>
+                <Button outline color ="secondary" style={{height:'40px', marginRight: '5px'}}><p>Register</p></Button>
               </Link>
               </NavItem>
               <Link to="/login">
-              <Button color="danger" style={{height:'40px', marginTop:'5px'}}><p><FaSignInAlt/> Sign in</p></Button>
+              <Button color="danger" style={{height:'40px'}}><p><FaSignInAlt/> Sign in</p></Button>
               </Link>
               </Nav>
             </Navbar>

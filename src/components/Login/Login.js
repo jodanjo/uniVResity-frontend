@@ -4,13 +4,15 @@ import {
     FormGroup, Label, Input,
     Button, FormFeedback
   } from 'reactstrap';
-
+  import { withRouter } from "react-router-dom";
+  
   
   
 
   class Login extends React.Component {
     constructor(props) {
         super(props);
+        this.props.history,
           this.state = {
           'email': '',
           'password': '',
@@ -37,6 +39,7 @@ import {
         if (user.id) {
           this.props.loadUser(user)
           console.log(user.name);
+          this.props.history.push("/");
           this.props.onRouteChange('/');
           
         }
@@ -124,4 +127,4 @@ import {
     
   
   
-  export default Login;
+  export default withRouter (Login);

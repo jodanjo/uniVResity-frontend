@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Route, Switch, Redirect, withRouter } from 'react-router-dom';
+import { Router, BrowserRouter, Route, Switch, Redirect, withRouter, Link } from 'react-router-dom';
 import Login from './components/Login/Login';
 import Navigation from './components/Navigation/Navigation';
 import Register from './components/Register/Register';
@@ -14,6 +14,7 @@ import CreateStream from './components/CreateStream/CreateStream';
 import Dashboard from './components/Dashboard/Dashboard';
 import Settings from './components/Settings/Settings';
 import Error from './components/Error/Error';
+import history from './history';
 
 
 class App extends Component {
@@ -83,7 +84,7 @@ class App extends Component {
       const { isSignedIn, route } = this.state;
 
       return (
-        <BrowserRouter>
+        <Router history={history}>
         <div className="App"> 
       <Navigation isSignedIn={isSignedIn} onRouteChange={this.onRouteChange}
       name={this.state.user.name}
@@ -116,7 +117,7 @@ class App extends Component {
             
          </Switch>
         </div>
-        </BrowserRouter>
+        </Router>
         
       );
     }

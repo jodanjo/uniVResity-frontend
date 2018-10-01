@@ -4,10 +4,12 @@ import {
     FormGroup, Label, Input,
     Button, FormFeedback
   } from 'reactstrap';
+  import { withRouter } from "react-router-dom";
 
   class Register extends React.Component {
     constructor(props) {
         super(props);
+        this.props.history,
           this.state = {
           'email': '',
           'password': '',
@@ -37,6 +39,7 @@ import {
       .then(user => {
         if (user) {
           this.props.loadUser(user)
+          this.props.history.push("/")
           this.props.onRouteChange('/');
         }
         
@@ -196,4 +199,4 @@ import {
     
   
   
-  export default Register;
+  export default withRouter (Register);
