@@ -17,6 +17,7 @@ import Error from './components/Error/Error';
 import history from './history';
 
 
+
 class App extends Component {
     constructor() {
       super();
@@ -52,7 +53,6 @@ class App extends Component {
       description: data.description
     }})
   }
-
 
 /*
     componentDidMount(){
@@ -106,7 +106,7 @@ class App extends Component {
               <CreateStream loadStream={this.loadStream} onRouteChange={this.onRouteChange}/>
             )}/>
             <Route path='/dashboard' render={() => (
-              <Dashboard loadUser={this.loadUser}
+              <Dashboard loadUser={this.loadUser} 
               name={this.state.user.name}
               bio={this.state.user.bio}
               /> 

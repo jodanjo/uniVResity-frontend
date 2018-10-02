@@ -5,14 +5,14 @@ import {
     Button, FormFeedback
   } from 'reactstrap';
   import { withRouter } from "react-router-dom";
-  
-  
-  
+  import { withAlert } from 'react-alert';
+ 
 
+  
   class Login extends React.Component {
     constructor(props) {
         super(props);
-        this.props.history,
+        this.props.history;
           this.state = {
           'email': '',
           'password': '',
@@ -24,14 +24,13 @@ import {
       
       }
 
-
       onSubmitSignIn = () => {
     fetch('http://localhost:3000/login', {
       method: 'post',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
         email: this.state.email,
-        password: this.state.password
+        password: this.state.password 
       })
     })
       .then(response => response.json())
@@ -39,9 +38,11 @@ import {
         if (user.id) {
           this.props.loadUser(user)
           console.log(user.name);
+          this.props.alert.success('You are logged in!');
           this.props.history.push("/");
           this.props.onRouteChange('/');
-          
+        } else {
+          this.props.alert.error('Wrong username or password!')
         }
       })
   }
@@ -116,9 +117,11 @@ import {
                 />   
                 </FormGroup>
               </Col>
-              <Button color="success" onClick={this.onSubmitSignIn} block>Submit</Button>
+              <Button color="success" onClick={this.onSubmitSignIn} block>Submit
+              </Button>
               <Button outline color="secondary" block onClick={() => onRouteChange('register')}>New to uniVresity? Register!</Button>
           </Form>
+          
           </div>
           </Container>
         );
@@ -127,4 +130,5 @@ import {
     
   
   
-  export default withRouter (Login);
+  export default withRouter(withAlert(Login));
+  

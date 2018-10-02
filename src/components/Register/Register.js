@@ -5,6 +5,7 @@ import {
     Button, FormFeedback
   } from 'reactstrap';
   import { withRouter } from "react-router-dom";
+  import { withAlert } from 'react-alert';
 
   class Register extends React.Component {
     constructor(props) {
@@ -39,6 +40,7 @@ import {
       .then(user => {
         if (user) {
           this.props.loadUser(user)
+          this.props.alert.success('You have created an account!')
           this.props.history.push("/")
           this.props.onRouteChange('/');
         }
@@ -199,4 +201,4 @@ import {
     
   
   
-  export default withRouter (Register);
+  export default withRouter (withAlert(Register));

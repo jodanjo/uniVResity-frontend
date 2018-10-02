@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link } from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import {
   Navbar,
   NavbarBrand,
@@ -38,7 +38,7 @@ const Navigation = ({onRouteChange, isSignedIn, name}) => {
               return (
                 <Navbar className="Navbar" color="light" light expand="md">
                   <Link to="/">
-                    <Navbar className="NavbarBrand" >uniVResity</Navbar>
+                    <Navbar className="NavbarBrand">uniVResity</Navbar>
                   </Link>
                   <Nav className="ml-auto" navbar>
                   <Link to="/createstream">
@@ -50,14 +50,14 @@ const Navigation = ({onRouteChange, isSignedIn, name}) => {
                 </DropdownToggle>
                 <DropdownMenu right>
                   <DropdownItem>
-                    <Link to="/dashboard"><p><FaTachometerAlt/> Dashboard</p> </Link>
+                  <Link to='/dashboard' style={{color:'black', textDecoration:'none'}}><p><FaTachometerAlt/> Dashboard</p> </Link>
                   </DropdownItem>
                   <DropdownItem>
-                    <Link to="settings"><p><FaCog/> Settings</p> </Link>
+                    <Link to="settings" style={{color:'black', textDecoration:'none'}}><p><FaCog/> Settings</p> </Link>
                   </DropdownItem>
                   <DropdownItem divider />
                   <DropdownItem >
-                    <Link to="/"><p onClick={isSignedIn = 'false'}><FaSignOutAlt/> Sign out</p></Link>
+                    <Link to="/" style={{color:'black', textDecoration:'none'}}><p onClick={isSignedIn = 'false'}><FaSignOutAlt/> Sign out</p></Link>
                   </DropdownItem>
                 </DropdownMenu>
               </UncontrolledDropdown>
