@@ -12,9 +12,9 @@ const CardList = ({ streams }) => {
 			return (
 		<CardView 
 			key= {i}
-			id={streams[i].id} 
-			course_title={streams[i].course_title}
-			course_description={streams[i].course_description} 
+			urlid={streams[i].urlid} 
+			title={streams[i].title}
+			headline={streams[i].headline} 
 			email={streams[i].email}
 		/>
 		);

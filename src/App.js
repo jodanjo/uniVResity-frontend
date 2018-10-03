@@ -9,7 +9,7 @@ import './App.css';
 import './components/Login/Login.css';
 import './components/Navigation/Navigation.css';
 import './components/CardView/CardView.css';
-import {streams} from './streams';
+//import {streams} from './streams';
 import CreateStream from './components/CreateStream/CreateStream';
 import Dashboard from './components/Dashboard/Dashboard';
 import Settings from './components/Settings/Settings';
@@ -24,7 +24,7 @@ class App extends Component {
       this.state = {
         route: '/',
         isSignedIn: false,
-        streams: streams,
+        streams: [],
         searchfield: '',
         user: {
           id: '',
@@ -54,13 +54,13 @@ class App extends Component {
     }})
   }
 
-/*
+
     componentDidMount(){
-      fetch('https://jsonplaceholder.typicode.com/users')
+      fetch('http://localhost:3000/public_streams')
       .then(response=> response.json())
-      .then(users => this.setState({streams : users}));  
+      .then(streams => this.setState({streams : streams}));  
     }
-*/  
+  
     onSearchChange = (event) => {
       this.setState({ searchfield: event.target.value })
     }
@@ -77,7 +77,7 @@ class App extends Component {
 
     render() {
       const filteredStreams  = this.state.streams.filter(stream => {
-        return stream.course_title.toLowerCase().includes(this.state.searchfield.toLowerCase())
+        return stream.title.toLowerCase().includes(this.state.searchfield.toLowerCase())
       })
 
       const { isSignedIn, route } = this.state;
