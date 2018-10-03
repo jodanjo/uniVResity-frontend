@@ -8,11 +8,11 @@ import { Provider as AlertProvider } from 'react-alert';
 import AlertTemplate from 'react-alert-template-basic';
 
 const options = {
-    position: 'top center',
+    position: 'bottom left',
     timeout: 8000,
-    offset: '110px',
-    transition: 'scale',
-    zIndex: 200
+    offset: '5px',
+    transition: 'fade',
+    zIndex: 100
   }
 
 

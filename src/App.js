@@ -80,9 +80,7 @@ class App extends Component {
         return stream.course_title.toLowerCase().includes(this.state.searchfield.toLowerCase())
       })
 
-
       const { isSignedIn, route } = this.state;
-
       return (
         <Router history={history}>
         <div className="App"> 

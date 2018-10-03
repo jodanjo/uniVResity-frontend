@@ -42,7 +42,7 @@ import {
           this.props.history.push("/");
           this.props.onRouteChange('/');
         } else {
-          this.props.alert.error('Wrong username or password!')
+          this.props.alert.error('Wrong email or password!');
         }
       })
   }
