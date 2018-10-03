@@ -38,13 +38,14 @@ import {
     })
       .then(response => response.json())
       .then(user => {
-        if (user) {
+        if (user.id) {
           this.props.loadUser(user)
-          this.props.alert.success('You have created an account!')
+          this.props.alert.success('You are now registered and logged in!')
           this.props.history.push("/")
           this.props.onRouteChange('/');
-        }
-        
+        } else {
+            this.props.alert.error('Unable to register!')
+        }   
       })
   }
     
