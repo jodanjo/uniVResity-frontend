@@ -7,8 +7,8 @@ import {
   import { withRouter } from "react-router-dom";
   import { withAlert } from 'react-alert';
 import { SSL_OP_NO_SESSION_RESUMPTION_ON_RENEGOTIATION } from 'constants';
+import { error } from 'util';
  
-
   
   class Login extends React.Component {
     constructor(props) {
@@ -31,7 +31,7 @@ import { SSL_OP_NO_SESSION_RESUMPTION_ON_RENEGOTIATION } from 'constants';
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
         email: this.state.email,
-        password: this.state.password 
+        password: this.state.password
       })
     })
       .then(response => response.json())
@@ -39,11 +39,11 @@ import { SSL_OP_NO_SESSION_RESUMPTION_ON_RENEGOTIATION } from 'constants';
         if (user.id) {
           this.props.loadUser(user)
           console.log(user.name);
-          this.props.alert.success('You are logged in!');
+          this.props.alert.success('YOU ARE LOGGED IN!')
           this.props.history.push("/");
           this.props.onRouteChange('/');
         } else {
-          this.props.alert.error('Wrong email or password!');
+          this.props.alert.error(JSON.stringify(user).replace(/^"(.+(?="$))"$/, '$1'));
         }
       })
   }

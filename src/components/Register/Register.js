@@ -44,7 +44,7 @@ import {
           this.props.history.push("/")
           this.props.onRouteChange('/');
         } else {
-            this.props.alert.error('Unable to register!')
+            this.props.alert.error(JSON.stringify(user).replace(/^"(.+(?="$))"$/, '$1'));
         }   
       })
   }
