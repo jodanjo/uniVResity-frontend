@@ -4,7 +4,8 @@ import { Button } from 'reactstrap';
 
 const Error = () => {
 	return(
-				<p> Error: The page does not exist!</p>
+
+				<h3> Error! This page does not exist!</h3>
 	 
 		);
 };

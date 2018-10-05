@@ -128,6 +128,12 @@ import {
                 </FormGroup>
               </Col>
               <Col>
+              <FormGroup>
+          <Label for="exampleFile">Upload Profile Photo</Label>
+          <Input type="file" name="file" id="exampleFile"/>
+        </FormGroup>
+              </Col>
+              <Col>
                 <FormGroup>
                   <Label>Email</Label>
                   <Input

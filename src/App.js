@@ -15,6 +15,8 @@ import Dashboard from './components/Dashboard/Dashboard';
 import Settings from './components/Settings/Settings';
 import Error from './components/Error/Error';
 import history from './history';
+import { AuthRoute } from 'react-router-auth'
+
 
 
 
@@ -30,7 +32,8 @@ class App extends Component {
           id: '',
           name: '',
           email: '',
-          joined: ''
+          joined: '',
+          bio: ''
         }
       }
     }
@@ -41,7 +44,7 @@ class App extends Component {
       name: data.name,
       email: data.email,
       bio: data.bio,
-      joined: data.joined
+      joined: data.joined,
     }})
   }
 
@@ -97,23 +100,18 @@ class App extends Component {
             <Route path='/register' render={() => (
               <Register loadUser={this.loadUser} onRouteChange={this.onRouteChange}/>
             )}/>
-            <Route path='/login' render={() => (
+            <Route path='/login' isSignedIn={isSignedIn} render={() => (
               <Login loadUser={this.loadUser} onRouteChange={this.onRouteChange}/>
             )}/>
-            <Route path='/createstream' render={() => (
-              <CreateStream loadStream={this.loadStream} onRouteChange={this.onRouteChange}/>
-            )}/>
-            <Route path='/dashboard' render={() => (
-              <Dashboard loadUser={this.loadUser} 
-              name={this.state.user.name}
-              bio={this.state.user.bio}
-              /> 
-            )} />
-            <Route path='/settings' component={Settings} />
+            <AuthRoute authenticated={isSignedIn} loadUser={this.loadUser} path="/createstream" component={CreateStream} redirectTo="/login"/>
+
+            <AuthRoute path='/dashboard' loadUser={this.loadUser} name={this.state.user.name} bio={this.state.user.bio} authenticated={isSignedIn} component={Dashboard} redirectTo="/login" 
+            />
+            <AuthRoute authenticated={isSignedIn} loadUser={this.loadUser}path='/settings' component={Settings} redirectTo="/login"/>
             <Route path='/signout' />
             <Route component={Error} />
             
-         </Switch>
+            </Switch>
         </div>
         </Router>
         
