@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 import {
     Container, Col, Form,
     FormGroup, Label, Input,
@@ -40,9 +41,9 @@ import {
       .then(user => {
         if (user.id) {
           this.props.loadUser(user)
-          this.props.alert.success('You are now registered and logged in!')
+          this.props.alert.success(`Welcome to UniVResity, ${user.name}, you are now registered and logged in!`)
           this.props.history.push("/")
-          this.props.onRouteChange('/');
+          this.props.auth(true);
         } else {
             this.props.alert.error(JSON.stringify(user).replace(/^"(.+(?="$))"$/, '$1'));
         }   
@@ -97,7 +98,7 @@ import {
       }
     render() {
         const { email, password, name, bio } = this.state;
-        const { onRouteChange } = this.props;
+        const { auth } = this.props;
         const isEnabled = this.state.validate.emailState === 'has-success' && this.state.validate.passwordState === 'has-success' && this.state.validate.nameState === 'has-success';
         return (
           <Container className="app">
@@ -196,7 +197,9 @@ import {
         </FormGroup>
         </Col>
               <Button disabled={!isEnabled} color="primary" onClick={this.onSubmitSignIn} block>Join</Button>
-              <Button outline color="secondary" block onClick={() => onRouteChange('login')}>Already have an account? Sign in!</Button>
+              <Link to="/login">
+                <Button outline color="secondary" block>Already have an account? Sign in!</Button>
+              </Link>
          </Form>
          </Container>
 

@@ -4,6 +4,8 @@ import {
     FormGroup, Label, Input,
     Button, FormFeedback, Row, FormText
   } from 'reactstrap';
+import { withRouter } from "react-router-dom";
+import { withAlert } from 'react-alert';  
 
 const generateURL =() =>{
   var url = '';
@@ -53,7 +55,8 @@ class CreateStream extends React.Component {
         if (stream) {
           this.props.loadStream(stream)
           console.log(stream)
-          this.props.onRouteChange('dashboard');
+          this.props.alert.success(`Stream ${stream.title}, created successfully!`)
+          this.props.history.push('/dashboard')
         }
       })
   }
@@ -123,7 +126,7 @@ class CreateStream extends React.Component {
 
   render() {
     const { title, subject, headline, description, is_private } = this.state;
-    const { onRouteChange } = this.props;
+    const { auth } = this.props;
     const isEnabled = this.state.validate.titleState === 'has-success' 
                    && this.state.validate.subjectState === 'has-success'
                    && this.state.validate.headlineState === 'has-success'  
@@ -260,4 +263,4 @@ class CreateStream extends React.Component {
   }
 }
 
-export default CreateStream;
+export default withRouter (withAlert(CreateStream));

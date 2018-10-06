@@ -13,7 +13,7 @@ import {
 import { FaUserCircle, FaSignInAlt, FaChalkboardTeacher, FaTachometerAlt, FaCog, FaSignOutAlt } from '../../../node_modules/react-icons/fa';
 
 
-const Navigation = ({onRouteChange, isSignedIn, name}) => {
+const Navigation = ({ isSignedIn, name}) => {
   if (!isSignedIn) {
     return (
       <div>

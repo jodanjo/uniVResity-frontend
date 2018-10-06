@@ -6,18 +6,14 @@ import UserCard from '../UserCard/UserCard';
   
   
 
-  class Dashboard extends React.Component {
-    constructor(props) {
-        super(props);
-      
-      }
-          render() {
+  const Dashboard = ({ user }) => {
+console.log(user); 
         return (
             <div>
             <Container>
           <Row>
           <Col lg='4' md='6'>
-          <UserCard/>
+          <UserCard name={user.name} bio= {user.bio}/>
             </Col>
           
           <Col lg='8' md='6'>
@@ -41,7 +37,7 @@ import UserCard from '../UserCard/UserCard';
           </div>
          
         );
-      }
+      
     }
     
   

@@ -15,16 +15,22 @@ import Dashboard from './components/Dashboard/Dashboard';
 import Settings from './components/Settings/Settings';
 import Error from './components/Error/Error';
 import history from './history';
-import { AuthRoute } from 'react-router-auth'
 
 
+
+const AuthRoute = ({ component: Component, user, isSignedIn, loadStream, ...rest }) => (
+  <Route {...rest} render={(props) => (
+    isSignedIn === true
+      ? <Component {...props} user={user} isSignedIn = {isSignedIn} loadStream={loadStream} />
+      : <Redirect to='/login'/>
+  )} />
+);
 
 
 class App extends Component {
     constructor() {
       super();
       this.state = {
-        route: '/',
         isSignedIn: false,
         streams: [],
         searchfield: '',
@@ -68,27 +74,27 @@ class App extends Component {
       this.setState({ searchfield: event.target.value })
     }
   
-    onRouteChange = (route) => {
-      if (route === 'signout') {
-        this.setState({isSignedIn: false})
-        route = '/';
-      } else if (route === '/') {
+    auth = (isAuth) => {
+      if (isAuth) {
         this.setState({isSignedIn: true})
+      } else {
+        this.setState({isSignedIn: false})
       } 
-      this.setState({route: route});
     }
+
+
 
     render() {
       const filteredStreams  = this.state.streams.filter(stream => {
         return stream.title.toLowerCase().includes(this.state.searchfield.toLowerCase())
       })
 
-      const { isSignedIn, route } = this.state;
+      const { isSignedIn, isAuth, user } = this.state;
       return (
         <Router history={history}>
         <div className="App"> 
-      <Navigation isSignedIn={isSignedIn} onRouteChange={this.onRouteChange}
-      name={this.state.user.name}
+      <Navigation isSignedIn={isSignedIn} 
+      name={user.name}
       />
          <Switch>
             <Route exact path='/' render={() => (
@@ -98,16 +104,14 @@ class App extends Component {
               </div>
             )}/>
             <Route path='/register' render={() => (
-              <Register loadUser={this.loadUser} onRouteChange={this.onRouteChange}/>
+              <Register loadUser={this.loadUser} auth={this.auth}/>
             )}/>
             <Route path='/login' isSignedIn={isSignedIn} render={() => (
-              <Login loadUser={this.loadUser} onRouteChange={this.onRouteChange}/>
+              <Login loadUser={this.loadUser} auth={this.auth}/>
             )}/>
-            <AuthRoute authenticated={isSignedIn} loadUser={this.loadUser} path="/createstream" component={CreateStream} redirectTo="/login"/>
-
-            <AuthRoute path='/dashboard' loadUser={this.loadUser} name={this.state.user.name} bio={this.state.user.bio} authenticated={isSignedIn} component={Dashboard} redirectTo="/login" 
-            />
-            <AuthRoute authenticated={isSignedIn} loadUser={this.loadUser}path='/settings' component={Settings} redirectTo="/login"/>
+            <AuthRoute path='/createstream' loadStream={this.loadStream} isSignedIn={isSignedIn} component={CreateStream}/>
+            <AuthRoute path='/dashboard' user={user} isSignedIn={isSignedIn} component={Dashboard} />
+            <AuthRoute path='/settings' user={user} isSignedIn={isSignedIn} component={Settings} />
             <Route path='/signout' />
             <Route component={Error} />
             

@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 import {
     Container, Col, Form,
     FormGroup, Label, Input,
@@ -39,9 +40,9 @@ import { error } from 'util';
         if (user.id) {
           this.props.loadUser(user)
           console.log(user.name);
-          this.props.alert.success('YOU ARE LOGGED IN!')
-          this.props.history.push("/");
-          this.props.onRouteChange('/');
+          this.props.alert.success(`${user.name}, you are logged in!`)
+          this.props.history.push("/")
+          this.props.auth(true);
         } else {
           this.props.alert.error(JSON.stringify(user).replace(/^"(.+(?="$))"$/, '$1'));
         }
@@ -74,7 +75,7 @@ import { error } from 'util';
       }
     render() {
         const { email, password } = this.state;
-        const { onRouteChange } = this.props;
+        const { auth } = this.props;
         return (
           <Container className="app" style={{background:'white'}}>
           <div>
@@ -120,7 +121,9 @@ import { error } from 'util';
               </Col>
               <Button color="success" onClick={this.onSubmitSignIn} block>Submit
               </Button>
-              <Button outline color="secondary" block onClick={() => onRouteChange('register')}>New to uniVresity? Register!</Button>
+              <Link to="/register">
+                <Button outline color="secondary" block >New to uniVResity? Register!</Button>
+              </Link>
           </Form>
           
           </div>
