@@ -1,9 +1,10 @@
 import React from 'react'; 
+import {Link} from 'react-router-dom';
 import { Card, CardImg, CardText, CardBody,
     CardTitle,  Button } from 'reactstrap';
 import { FaSave } from '../../../node_modules/react-icons/fa';
 
-    const CardView = ({title, headline, urlid})  => {
+    const CardView = ({title, headline, urlid, subject, url, description, owner, photo})  => {
         return (
           <div className='inline'>
             <Card style={{ width: '300px', marginTop:'20px', marginLeft:'10px', marginBottom:'5px'}}>
@@ -11,7 +12,9 @@ import { FaSave } from '../../../node_modules/react-icons/fa';
               <CardBody>
                 <CardTitle style={{fontWeight:'500', fontSize:'20px', overflowY: 'hidden', height:'125px'}}>{title}</CardTitle>
                 <CardText style={{textAlign:'left', marginTop:'10px', overflowY: 'hidden', height:'120px', fontSize:'13px'}}>{headline}</CardText>
+                <Link to={`/stream/${url}`}>
                 <Button outline color='primary'>Enter</Button>
+                </Link>
                 <Button style={{marginLeft: '10px'}} outline color='link'><FaSave/> Save</Button>
               </CardBody>
             </Card>

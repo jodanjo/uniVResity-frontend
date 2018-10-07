@@ -8,14 +8,19 @@ const CardList = ({ streams }) => {
 			<p >All Streams</p>
             <hr/>
 			</div>
-			{streams.map((user, i) => {
+			{streams.map((stream, i) => {
 			return (
 		<CardView 
 			key= {i}
 			urlid={streams[i].urlid} 
 			title={streams[i].title}
 			headline={streams[i].headline} 
-			email={streams[i].email}
+			subject={streams[i].subject}
+			url={streams[i].url}
+			description={streams[i].description}
+			owner={streams[i].owner}
+			photo={streams[i].photo}
+
 		/>
 		);
 	})}

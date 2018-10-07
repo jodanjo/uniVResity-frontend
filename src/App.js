@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Router, BrowserRouter, Route, Switch, Redirect, withRouter, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Redirect, withRouter, Link } from 'react-router-dom';
 import Login from './components/Login/Login';
 import Navigation from './components/Navigation/Navigation';
 import Register from './components/Register/Register';
@@ -14,6 +14,7 @@ import CreateStream from './components/CreateStream/CreateStream';
 import Dashboard from './components/Dashboard/Dashboard';
 import Settings from './components/Settings/Settings';
 import Error from './components/Error/Error';
+import Stream from './components/Stream/Stream';
 import history from './history';
 
 
@@ -88,7 +89,7 @@ class App extends Component {
       const filteredStreams  = this.state.streams.filter(stream => {
         return stream.title.toLowerCase().includes(this.state.searchfield.toLowerCase())
       })
-
+      console.log(filteredStreams);
       const { isSignedIn, isAuth, user } = this.state;
       return (
         <Router history={history}>
@@ -112,7 +113,7 @@ class App extends Component {
             <AuthRoute path='/createstream' loadStream={this.loadStream} isSignedIn={isSignedIn} component={CreateStream}/>
             <AuthRoute path='/dashboard' user={user} isSignedIn={isSignedIn} component={Dashboard} />
             <AuthRoute path='/settings' user={user} isSignedIn={isSignedIn} component={Settings} />
-            <Route path='/signout' />
+            <Route path ='/stream/' component={Stream} />
             <Route component={Error} />
             
             </Switch>
