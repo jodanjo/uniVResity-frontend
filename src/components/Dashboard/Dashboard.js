@@ -4,9 +4,9 @@ import {
   } from 'reactstrap';
 import UserCard from '../UserCard/UserCard';
   
-  
 
-  const Dashboard = ({ user }) => {
+
+  const Dashboard = ({ user, streams }) => {
 console.log(user); 
         return (
             <div>
@@ -15,7 +15,6 @@ console.log(user);
           <Col lg='4' md='6'>
           <UserCard name={user.name} bio= {user.bio}/>
             </Col>
-          
           <Col lg='8' md='6'>
               <UncontrolledAlert color="success" style={{marginTop:'20px'}}>
               <h4 className="alert-heading">Welcome to your dashboard!</h4>

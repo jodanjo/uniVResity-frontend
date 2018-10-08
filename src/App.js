@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Switch, Redirect, withRouter, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Redirect, withRouter, Link, HashRouter } from 'react-router-dom';
 import Login from './components/Login/Login';
 import Navigation from './components/Navigation/Navigation';
 import Register from './components/Register/Register';
@@ -92,7 +92,7 @@ class App extends Component {
       console.log(filteredStreams);
       const { isSignedIn, isAuth, user } = this.state;
       return (
-        <Router history={history}>
+        <HashRouter history={history}>
         <div className="App"> 
       <Navigation isSignedIn={isSignedIn} 
       name={user.name}
@@ -118,7 +118,7 @@ class App extends Component {
             
             </Switch>
         </div>
-        </Router>
+        </HashRouter>
         
       );
     }

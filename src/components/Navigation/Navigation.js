@@ -13,6 +13,14 @@ import {
 import { FaUserCircle, FaSignInAlt, FaChalkboardTeacher, FaTachometerAlt, FaCog, FaSignOutAlt } from '../../../node_modules/react-icons/fa';
 
 
+function logout(event) {
+  event.preventDefault(); // prevent page transition
+  fetch('/logout', { method: 'POST' }).then(() =>
+    window.location.reload() // stay at the same url
+  )
+}
+
+
 const Navigation = ({ isSignedIn, name}) => {
   if (!isSignedIn) {
     return (
@@ -57,7 +65,7 @@ const Navigation = ({ isSignedIn, name}) => {
                   </DropdownItem>
                   <DropdownItem divider />
                   <DropdownItem >
-                    <Link to="/" style={{color:'black', textDecoration:'none'}}><p onClick={isSignedIn = 'false'}><FaSignOutAlt/> Sign out</p></Link>
+                    <Link to="/logout" style={{color:'black', textDecoration:'none'}}><p onClick={logout}><FaSignOutAlt/> Sign out</p></Link>
                   </DropdownItem>
                 </DropdownMenu>
               </UncontrolledDropdown>
