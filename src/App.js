@@ -110,7 +110,7 @@ class App extends Component {
             <Route path='/login' isSignedIn={isSignedIn} render={() => (
               <Login loadUser={this.loadUser} auth={this.auth}/>
             )}/>
-            <AuthRoute path='/createstream' loadStream={this.loadStream} isSignedIn={isSignedIn} component={CreateStream}/>
+            <AuthRoute path='/createstream' loadStream={this.loadStream} isSignedIn={isSignedIn} user={user} component={CreateStream}/>
             <AuthRoute path='/dashboard' user={user} isSignedIn={isSignedIn} component={Dashboard} />
             <AuthRoute path='/settings' user={user} isSignedIn={isSignedIn} component={Settings} />
             <Route path ='/stream/' component={Stream} />

@@ -25,6 +25,7 @@ class CreateStream extends React.Component {
           'headline': '',
           'description': '',
           'is_private': 'FALSE',
+
           
           validate: {
             titleState: '',
@@ -46,7 +47,8 @@ class CreateStream extends React.Component {
         subject: this.state.subject,
         headline: this.state.headline,
         description: this.state.description,
-        is_private: this.state.is_private
+        is_private: this.state.is_private,
+        owner: this.props.user.id
         
       })
     })
@@ -55,6 +57,7 @@ class CreateStream extends React.Component {
         if (stream) {
           this.props.loadStream(stream)
           console.log(stream)
+          console.log(this.props.user.id)
           this.props.alert.success(`Stream ${stream.title}, created successfully!`)
           this.props.history.push('/dashboard')
         }
