@@ -66,7 +66,7 @@ class App extends Component {
 
 
     componentDidMount(){
-      fetch('http://localhost:3000/public_streams')
+      fetch('https://fierce-fortress-43881.herokuapp.com//public_streams')
       .then(response=> response.json())
       .then(streams => this.setState({streams : streams}));  
     }
