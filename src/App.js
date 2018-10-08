@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Switch, Redirect, withRouter, Link, HashRouter } from 'react-router-dom';
+import { Route, Switch, Redirect, HashRouter } from 'react-router-dom';
 import Login from './components/Login/Login';
 import Navigation from './components/Navigation/Navigation';
 import Register from './components/Register/Register';
@@ -15,7 +15,7 @@ import Dashboard from './components/Dashboard/Dashboard';
 import Settings from './components/Settings/Settings';
 import Error from './components/Error/Error';
 import Stream from './components/Stream/Stream';
-import history from './history';
+//import history from './history';
 
 
 
@@ -89,10 +89,10 @@ class App extends Component {
       const filteredStreams  = this.state.streams.filter(stream => {
         return stream.title.toLowerCase().includes(this.state.searchfield.toLowerCase())
       })
-      console.log(filteredStreams);
-      const { isSignedIn, isAuth, user } = this.state;
+      //console.log(filteredStreams);
+      const { isSignedIn, user } = this.state;
       return (
-        <HashRouter history={history}>
+        <HashRouter >
         <div className="App"> 
       <Navigation isSignedIn={isSignedIn} 
       name={user.name}

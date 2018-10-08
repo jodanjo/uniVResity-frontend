@@ -98,7 +98,7 @@ import {
       }
     render() {
         const { email, password, name, bio } = this.state;
-        const { auth } = this.props;
+        //const { auth } = this.props;
         const isEnabled = this.state.validate.emailState === 'has-success' && this.state.validate.passwordState === 'has-success' && this.state.validate.nameState === 'has-success';
         return (
           <Container className="app">

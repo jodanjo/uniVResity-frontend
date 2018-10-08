@@ -1,6 +1,6 @@
 import React from 'react';
-import {NavLink, Link} from 'react-router-dom';
-import { Button } from 'reactstrap';
+//import {NavLink, Link} from 'react-router-dom';
+//import { Button } from 'reactstrap';
 
 const Stream = () => {
 	return(

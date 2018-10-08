@@ -7,8 +7,8 @@ import {
   } from 'reactstrap';
   import { withRouter } from "react-router-dom";
   import { withAlert } from 'react-alert';
-import { SSL_OP_NO_SESSION_RESUMPTION_ON_RENEGOTIATION } from 'constants';
-import { error } from 'util';
+//import { SSL_OP_NO_SESSION_RESUMPTION_ON_RENEGOTIATION } from 'constants';
+//import { error } from 'util';
  
   
   class Login extends React.Component {
@@ -19,7 +19,7 @@ import { error } from 'util';
           'email': '',
           'password': '',
           validate: {
-            emailState: '',
+          emailState: '',
           },
         }
         this.handleChange = this.handleChange.bind(this);
@@ -39,7 +39,7 @@ import { error } from 'util';
       .then(user => {
         if (user.id) {
           this.props.loadUser(user)
-          console.log(user.name);
+          //console.log(user.name);
           this.props.alert.success(`${user.name}, you are logged in!`)
           this.props.history.push("/")
           this.props.auth(true);
@@ -71,11 +71,10 @@ import { error } from 'util';
     
       submitForm(e) {
         e.preventDefault();
-        console.log(`Email: ${ this.state.email }`)
+        //console.log(`Email: ${ this.state.email }`)
       }
     render() {
         const { email, password } = this.state;
-        const { auth } = this.props;
         return (
           <Container className="app" style={{background:'white'}}>
           <div>

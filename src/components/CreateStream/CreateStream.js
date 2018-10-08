@@ -56,8 +56,8 @@ class CreateStream extends React.Component {
       .then(stream => {
         if (stream) {
           this.props.loadStream(stream)
-          console.log(stream)
-          console.log(this.props.user.id)
+          //console.log(stream)
+          //console.log(this.props.user.id)
           this.props.alert.success(`Stream ${stream.title}, created successfully!`)
           this.props.history.push('/dashboard')
         }
@@ -128,8 +128,8 @@ class CreateStream extends React.Component {
       
 
   render() {
-    const { title, subject, headline, description, is_private } = this.state;
-    const { auth } = this.props;
+    const { title, subject, headline, description } = this.state;
+    //const { auth } = this.props;
     const isEnabled = this.state.validate.titleState === 'has-success' 
                    && this.state.validate.subjectState === 'has-success'
                    && this.state.validate.headlineState === 'has-success'  
