@@ -60,7 +60,8 @@ class App extends Component {
       title: data.title,
       subject: data.subject,
       headline: data.headline,
-      description: data.description
+      description: data.description, 
+      owner: data.owner
     }})
   }
 
@@ -111,7 +112,7 @@ class App extends Component {
               <Login loadUser={this.loadUser} auth={this.auth}/>
             )}/>
             <AuthRoute path='/createstream' loadStream={this.loadStream} isSignedIn={isSignedIn} user={user} component={CreateStream}/>
-            <AuthRoute path='/dashboard' user={user} isSignedIn={isSignedIn} component={Dashboard} />
+            <AuthRoute path='/dashboard' user={user} loadStream={this.loadStream} isSignedIn={isSignedIn} component={Dashboard} />
             <AuthRoute path='/settings' user={user} isSignedIn={isSignedIn} component={Settings} />
             <Route path ='/stream/' isSignedIn={this.isSignedIn} component={Stream} />
             <Route isSignedIn={this.isSignedIn} component={Error} />
