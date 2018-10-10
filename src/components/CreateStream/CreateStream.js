@@ -38,7 +38,6 @@ class CreateStream extends React.Component {
       }
 
        onSubmitStream = () => {
-    fetch(itSignIn = () => {
     fetch( 'https://fierce-fortress-43881.herokuapp.com/createstream' || 'http://localhost:3000/createstream', {
       method: 'post',
       headers: {'Content-Type': 'application/json'},
@@ -63,8 +62,8 @@ class CreateStream extends React.Component {
           this.props.history.push('/dashboard')
         }
       })
-  }
-    
+    }
+ 
 
       validateTitle(e) {
             const titleRex = /^(?=.{3,128}$)/;

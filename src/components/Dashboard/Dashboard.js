@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-    Card, CardBody, CardImg, CardText, CardTitle, Container, Row, Col, UncontrolledAlert
+     Container, Row, Col, UncontrolledAlert
   } from 'reactstrap';
 import UserCard from '../UserCard/UserCard';
 import UserCreatedStreams from '../UserCreatedStreams/UserCreatedStreams';
@@ -8,8 +8,7 @@ import UserSavedStreams from '../UserSavedStreams/UserSavedStreams';
   
 
 
-  const Dashboard = ({ user, streams  }) => {
-  const d = new Date()
+  const Dashboard = ({ user  }) => {
 console.log(user); 
         return (
             <div>
@@ -28,13 +27,13 @@ console.log(user);
         </p>
     </UncontrolledAlert>
     <br/>
-    <p style={{textAlign:'left'}}>Saved Streams</p>
+    <p style={{textAlign:'left' , marginRight:'100px'}}>Saved Stream</p>
     <hr/>
           <UserSavedStreams/>
     <br/>
     <p style={{textAlign:'left'}}>Created Streams</p>
     <hr />
-          <UserCreatedStreams/>
+          <UserCreatedStreams />
 
     </Col>
     </Row>

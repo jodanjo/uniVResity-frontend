@@ -65,7 +65,6 @@ class App extends Component {
     }})
   }
 
-
     componentDidMount(){
       fetch( 'https://fierce-fortress-43881.herokuapp.com/public_streams' ||'http://localhost:3000/public_streams')
       .then(response=> response.json())
@@ -112,7 +111,7 @@ class App extends Component {
               <Login loadUser={this.loadUser} auth={this.auth}/>
             )}/>
             <AuthRoute path='/createstream' loadStream={this.loadStream} isSignedIn={isSignedIn} user={user} component={CreateStream}/>
-            <AuthRoute path='/dashboard' user={user} loadStream={this.loadStream} isSignedIn={isSignedIn} component={Dashboard} />
+            <AuthRoute path='/dashboard' user={user} isSignedIn={isSignedIn} component={Dashboard} />
             <AuthRoute path='/settings' user={user} isSignedIn={isSignedIn} component={Settings} />
             <Route path ='/stream/' isSignedIn={this.isSignedIn} component={Stream} />
             <Route isSignedIn={this.isSignedIn} component={Error} />
