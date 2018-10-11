@@ -38,7 +38,7 @@ class CreateStream extends React.Component {
       }
 
        onSubmitStream = () => {
-    fetch( 'http://localhost:3000/createstream', {
+    fetch( 'https://fierce-fortress-43881.herokuapp.com/createstream' || 'http://localhost:3000/createstream', {
       method: 'post',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
