@@ -1,7 +1,7 @@
 import React from 'react'; 
 import CardView from '../CardView/CardView';
 
-const CardList = ({ streams }) => {
+const CardList = ({ streams, isSignedIn, userid }) => {
 	return (
 		<div>
 			<div style={{textAlign:'left', paddingLeft:'20px', paddingRight:'20px'}}>
@@ -10,7 +10,7 @@ const CardList = ({ streams }) => {
 			</div>
 			{streams.map((stream, i) => {
 			return (
-		<CardView 
+		<CardView isSignedIn={isSignedIn} userid={userid}
 			key= {i}
 			urlid={streams[i].urlid} 
 			title={streams[i].title}
