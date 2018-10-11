@@ -56,6 +56,7 @@ class App extends Component {
   }
 
   loadStream = (data) => {
+    this.fetchStreams();
     this.setState({stream: {
       title: data.title,
       subject: data.subject,
@@ -65,12 +66,17 @@ class App extends Component {
     }})
   }
 
-    componentDidMount(){
-      fetch( 'https://fierce-fortress-43881.herokuapp.com/public_streams' ||'http://localhost:3000/public_streams')
+
+    fetchStreams = () =>{
+      fetch('http://localhost:3000/public_streams')
       .then(response=> response.json())
       .then(streams => this.setState({streams : streams}));  
     }
   
+    componentDidMount(){
+      this.fetchStreams();
+    }
+
     onSearchChange = (event) => {
       this.setState({ searchfield: event.target.value })
     }
@@ -101,7 +107,7 @@ class App extends Component {
             <Route exact path='/' render={() => (
               <div>
               <Searchbar searchChange={this.onSearchChange}/>
-              <CardList streams = {filteredStreams}/>
+              <CardList streams = {filteredStreams} isSignedIn={isSignedIn} userid={user.id}/>
               </div>
             )}/>
             <Route path='/register' render={() => (
