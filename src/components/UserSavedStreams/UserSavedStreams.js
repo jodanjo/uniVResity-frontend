@@ -1,6 +1,7 @@
 import React from 'react';
 import { Table, Button } from 'reactstrap';
 import {Link} from 'react-router-dom';
+import {withAlert} from 'react-alert';
 
 const UserSavedStreams = ({ userid, title, description, headline, url, removeFav }) => {
     
@@ -19,7 +20,7 @@ const onUnsaveStream = () => {
             .then(response => response.json())
             .then(unfav => {
               if (unfav===1) {
-                alert(`Stream ${title} was removed from your favorite streams.`)
+               alert(`Stream ${title} was removed from your saved streams.`)
                 removeFav()
               } else {
                 alert(`Error removing Stream ${title}.`)
@@ -34,7 +35,8 @@ const onUnsaveStream = () => {
           <tr>
             <th>Title </th>
             <th>Description</th>
-            <th>Action</th>
+            <th>View</th>
+            <th>Unsave</th>
           </tr>
         </thead>
         <tbody>
@@ -42,12 +44,13 @@ const onUnsaveStream = () => {
             <td>{`${title}`}</td>
             <td>{`${headline}`}</td>
             <td>
-                <div className='inline'>
                 <Link to={`/stream/${url}`}>
-                    <Button style={{marginRight:'5px'}} color='primary'>View</Button>
+                    <Button color='primary'>View</Button>
                 </Link>
+            </td>
+            <td>
                 <Button onClick={onUnsaveStream} color='secondary'>Unsave</Button>
-                </div>
+                
             </td>
           </tr>
         </tbody>
@@ -55,4 +58,4 @@ const onUnsaveStream = () => {
     );
   } 
 
-export default UserSavedStreams; 
+export default withAlert(UserSavedStreams); 

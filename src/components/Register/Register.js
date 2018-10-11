@@ -27,7 +27,7 @@ import {
       }
 
       onSubmitSignIn = () => {
-    fetch( 'https://fierce-fortress-43881.herokuapp.com/register'||'http://localhost:3000/register', {
+    fetch('http://localhost:3000/register', {
       method: 'post',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({

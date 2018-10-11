@@ -1,11 +1,12 @@
 import React from 'react';
 import {
-     Container, Row, Col, UncontrolledAlert
+     Container, Row, Col, UncontrolledAlert, Button
   } from 'reactstrap';
 import UserCard from '../UserCard/UserCard';
 import UserCreatedStreams from '../UserCreatedStreams/UserCreatedStreams';
 import UserSavedStreams from '../UserSavedStreams/UserSavedStreams';
-  
+import {Link} from 'react-router-dom';
+
 
 
   class Dashboard extends React.Component{
@@ -46,7 +47,6 @@ componentDidMount = () => {
 }
 
 render(){
-const d = new Date()
 //console.log(this.user);
 const favs = this.state.favs;
 const owned = this.state.owned;
@@ -55,13 +55,20 @@ const owned = this.state.owned;
             <div>
             <Container>
           <Row>
+            <Col md='12'>
+            <Link to="/settings">
+                    <div className='float-right'>
+                    <Button style={{marginTop:'15px'}}color='primary'>Edit Profile</Button>
+                    </div>
+                </Link>  
+            </Col>
           <Col lg='4' md='6'>
           <UserCard name={this.user.name} bio= {this.user.bio}/>
             </Col>
           <Col lg='8' md='6'>
               <UncontrolledAlert color="success" style={{marginTop:'20px'}}>
               <h4 className="alert-heading">Welcome to your dashboard!</h4>
-      <p style={{textAlign:'left'}}>Here, you can watch your saved streams and launch, edit or delete your created streams!</p>
+      <p style={{textAlign:'left'}}>Here, you can watch your saved streams and edit or delete your created streams!</p>
       <hr />
       <p className="mb-0" style={{textAlign:'left'}}>
           Tip: Adding a bio helps the UniVRestiy community to get to know you better.  
