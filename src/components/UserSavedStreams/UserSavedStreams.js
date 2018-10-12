@@ -22,7 +22,7 @@ const onUnsaveStream = () => {
             .then(unfav => {
               if (unfav===1) {
                 swal({
-                  title: "This stream was removed from your list!",
+                  title: "This stream has been removed from your favorites!",
                   text: `${title}`,
                   icon: "warning",
                   button: "Ok",
@@ -41,25 +41,25 @@ const onUnsaveStream = () => {
         }
 
     return (
-      <Table bordered>
+      <Table borderless>
         <thead>
-          <tr>
-            <th>Title </th>
-            <th>Description</th>
-            <th>View</th>
+          <tr style={{backgroundColor:'black', color:'white'}}>
+            <th >Title </th>
+            <th >Description</th>
+            <th >View</th>
             <th>Unsave</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>{`${title}`}</td>
-            <td>{`${headline}`}</td>
-            <td>
+            <td style={{width:'180px', textAlign:'left'}}>{`${title}`}</td>
+            <td style={{width:'340px', textAlign:'left'}}>{`${headline}`}</td>
+            <td style={{width:'30px'}}>
                 <Link to={`/stream/${url}`}>
                     <Button color='primary'>View</Button>
                 </Link>
             </td>
-            <td>
+            <td style={{width:'30px'}}>
                 <Button onClick={onUnsaveStream} color='secondary'>Unsave</Button>
                 
             </td>

@@ -43,9 +43,9 @@ const onDeleteStream = () => {
         }
 
     return (
-      <Table bordered >
+      <Table borderless >
         <thead>
-          <tr>
+          <tr style={{backgroundColor:'black', color:'white'}}>
             <th>Title </th>
             <th>Description</th>
             <th>View</th>
@@ -54,14 +54,14 @@ const onDeleteStream = () => {
         </thead>
         <tbody>
           <tr>
-            <td>{`${title}`}</td>
-            <td>{`${headline}`}</td>
-            <td>
+            <td style={{width:'180px', textAlign:'left'}}>{`${title}`}</td>
+            <td style={{width:'340px', textAlign:'left'}}>{`${headline}`}</td>
+            <td style={{width:'30px'}}>
                 <Link to={`/stream/${url}`}>
                     <Button style={{marginRight:'5px'}} color='primary'>View</Button>
                 </Link>
             </td>
-            <td>
+            <td style={{width:'30px'}}>
                 <Button onClick={onDeleteStream} color='danger'>Delete</Button>
                 
             </td>
