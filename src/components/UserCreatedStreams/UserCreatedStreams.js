@@ -1,6 +1,7 @@
 import React from 'react';
 import { Table, Button } from 'reactstrap';
 import {Link} from 'react-router-dom';
+import { withAlert } from 'react-alert';
 
 const UserCreatedStreams = ({ userid, title, description, headline, url, removeDeleted, removeFav }) => {
     
@@ -35,7 +36,8 @@ const onDeleteStream = () => {
           <tr>
             <th>Title </th>
             <th>Description</th>
-            <th>Action</th>
+            <th>View</th>
+            <th>Delete</th>
           </tr>
         </thead>
         <tbody>
@@ -43,15 +45,13 @@ const onDeleteStream = () => {
             <td>{`${title}`}</td>
             <td>{`${headline}`}</td>
             <td>
-                <div className='inline'>
                 <Link to={`/stream/${url}`}>
                     <Button style={{marginRight:'5px'}} color='primary'>View</Button>
                 </Link>
-                <Link to={`/settings`}>
-                    <Button style={{marginRight:'5px'}} color='warning'>Edit</Button>
-                </Link>
+            </td>
+            <td>
                 <Button onClick={onDeleteStream} color='danger'>Delete</Button>
-                </div>
+                
             </td>
           </tr>
         </tbody>
@@ -59,4 +59,4 @@ const onDeleteStream = () => {
     );
   } 
 
-export default UserCreatedStreams; 
+export default withAlert(UserCreatedStreams); 

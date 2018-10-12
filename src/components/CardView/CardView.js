@@ -6,6 +6,7 @@ import { FaSave } from '../../../node_modules/react-icons/fa';
 import { withRouter } from "react-router-dom";
 import { withAlert } from 'react-alert';
 
+
      
 
     const CardView = ({title, headline, urlid, subject, url, description, owner, photo, isSignedIn, userid})  => {
@@ -42,7 +43,7 @@ import { withAlert } from 'react-alert';
                 <Link to={`/stream/${url}`}>
                 <Button outline color='primary'>Enter</Button>
                 </Link>
-                <Button disabled={!isSignedIn} onClick={onSaveStream} style={{marginLeft: '10px'}} outline color='link'><FaSave/> Save</Button>
+                <Button disabled={!isSignedIn} onClick={onSaveStream} style={{marginLeft: '10px'}} color='primary'><FaSave/> Save</Button>
               </CardBody>
             </Card>
           </div>
