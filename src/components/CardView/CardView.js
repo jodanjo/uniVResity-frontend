@@ -4,7 +4,7 @@ import { Card, CardImg, CardText, CardBody,
     CardTitle,  Button } from 'reactstrap';
 import { FaSave } from '../../../node_modules/react-icons/fa';
 import { withRouter } from "react-router-dom";
-import { withAlert } from 'react-alert';
+import swal from 'sweetalert';
 
 
      
@@ -25,9 +25,19 @@ import { withAlert } from 'react-alert';
             .then(fav => {
               //console.log(fav)
               if (fav==='success') {
-                alert(`Stream ${title} was saved to your favorite streams.`)
+                swal({
+                  title: "This stream has been saved to your favorites!",
+                  text: `${title}`,
+                  icon: "success",
+                  button: "Ok",
+                });
               } else if (fav==='saved_already') {
-                alert(`Stream ${title}, is already in your favorites.`)
+                swal({
+                  title: "This stream is already in your favorites!",
+                  text: `${title}`,
+                  icon: "warning",
+                  button: "Ok",
+                });
               }
             })
 
@@ -49,5 +59,5 @@ import { withAlert } from 'react-alert';
           </div>
         );
       };
-export default withRouter(withAlert(CardView)); 
+export default withRouter(CardView); 
   

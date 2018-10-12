@@ -1,7 +1,8 @@
 import React from 'react';
 import { Table, Button } from 'reactstrap';
 import {Link} from 'react-router-dom';
-import {withAlert} from 'react-alert';
+import swal from 'sweetalert';
+
 
 const UserSavedStreams = ({ userid, title, description, headline, url, removeFav }) => {
     
@@ -20,17 +21,27 @@ const onUnsaveStream = () => {
             .then(response => response.json())
             .then(unfav => {
               if (unfav===1) {
-               alert(`Stream ${title} was removed from your saved streams.`)
+                swal({
+                  title: "This stream was removed from your list!",
+                  text: `${title}`,
+                  icon: "warning",
+                  button: "Ok",
+                });
                 removeFav()
               } else {
-                alert(`Error removing Stream ${title}.`)
+                swal({
+                  title: "Could not remove this stream!",
+                  text: `${title}`,
+                  icon: "error",
+                  button: "Ok",
+                });
               }
             })
 
         }
 
     return (
-      <Table striped>
+      <Table bordered>
         <thead>
           <tr>
             <th>Title </th>
@@ -58,4 +69,4 @@ const onUnsaveStream = () => {
     );
   } 
 
-export default withAlert(UserSavedStreams); 
+export default UserSavedStreams; 
