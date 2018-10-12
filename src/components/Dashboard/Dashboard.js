@@ -9,6 +9,7 @@ import {Link} from 'react-router-dom';
 
 
 
+
   class Dashboard extends React.Component{
 
     constructor(props) {
@@ -55,15 +56,13 @@ const owned = this.state.owned;
             <div>
             <Container>
           <Row>
-            <Col md='12'>
-            <Link to="/settings">
-                    <div className='float-right'>
-                    <Button style={{marginTop:'15px'}}color='primary'>Edit Profile</Button>
-                    </div>
-                </Link>  
-            </Col>
           <Col lg='4' md='6'>
           <UserCard name={this.user.name} bio= {this.user.bio}/>
+          <hr/>
+          <p style={{textAlign:'left'}}>Email: {this.user.email}</p>
+          <Link to="/settings">
+                    <Button color='primary' block>Settings</Button>
+                </Link>  
             </Col>
           <Col lg='8' md='6'>
               <UncontrolledAlert color="success" style={{marginTop:'20px'}}>
