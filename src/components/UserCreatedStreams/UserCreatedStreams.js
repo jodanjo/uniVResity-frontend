@@ -2,6 +2,7 @@ import React from 'react';
 import { Table, Button } from 'reactstrap';
 import {Link} from 'react-router-dom';
 import { withAlert } from 'react-alert';
+import swal from 'sweetalert';
 
 const UserCreatedStreams = ({ userid, title, description, headline, url, removeDeleted, removeFav }) => {
     
@@ -20,10 +21,21 @@ const onDeleteStream = () => {
             .then(response => response.json())
             .then(deleted => {
               if (deleted===1) {
-                alert(`Stream ${title} was deleted from UniVResity streams.`)
+                swal({
+                  title: "This stream has been deleted!",
+                  text: `${title}`,
+                  icon: "info",
+                  button: "Ok",
+                });
                 removeDeleted()
                 removeFav()
               } else {
+                swal({
+                  title: "Could not delete this stream!",
+                  text: `${title}`,
+                  icon: "error",
+                  button: "Ok",
+                });
                 alert(`Error deleting Stream ${title}.`)
               }
             })
