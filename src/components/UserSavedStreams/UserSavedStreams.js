@@ -24,7 +24,7 @@ const onUnsaveStream = () => {
                 swal({
                   title: "This stream was removed from your list!",
                   text: `${title}`,
-                  icon: "info",
+                  icon: "warning",
                   button: "Ok",
                 });
                 removeFav()

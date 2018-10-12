@@ -24,7 +24,7 @@ const onDeleteStream = () => {
                 swal({
                   title: "This stream has been deleted!",
                   text: `${title}`,
-                  icon: "info",
+                  icon: "warning",
                   button: "Ok",
                 });
                 removeDeleted()

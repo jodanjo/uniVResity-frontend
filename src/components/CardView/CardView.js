@@ -35,7 +35,7 @@ import swal from 'sweetalert';
                 swal({
                   title: "This stream is already in your favorites!",
                   text: `${title}`,
-                  icon: "info",
+                  icon: "warning",
                   button: "Ok",
                 });
               }
