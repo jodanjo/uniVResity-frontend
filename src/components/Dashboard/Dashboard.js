@@ -75,7 +75,7 @@ const owned = this.state.owned;
         </p>
     </UncontrolledAlert>
     <br/>
-    <p style={{textAlign:'left' , marginRight:'100px'}}>Saved Stream</p>
+    <h4 style={{textAlign:'left' , marginRight:'100px'}}>Saved Streams</h4>
     <hr/>
             {favs.map((fav, i) => {
               return (
@@ -89,7 +89,7 @@ const owned = this.state.owned;
           })}
 
     <br/>
-    <p style={{textAlign:'left'}}>Created Streams</p>
+    <h4 style={{textAlign:'left'}}>Created Streams</h4>
     <hr />
           {owned.map((own, i) => {
               return (

@@ -43,7 +43,7 @@ const onDeleteStream = () => {
         }
 
     return (
-      <Table striped>
+      <Table bordered >
         <thead>
           <tr>
             <th>Title </th>
