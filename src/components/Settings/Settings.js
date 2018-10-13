@@ -6,20 +6,14 @@ import {
     Button, FormFeedback, UncontrolledAlert, Row
   } from 'reactstrap';
   import { withRouter } from "react-router-dom";
-  import { withAlert } from 'react-alert';
   import UserCard from '../UserCard/UserCard';
-import UserCreatedStreams from '../UserCreatedStreams/UserCreatedStreams';
-import UserSavedStreams from '../UserSavedStreams/UserSavedStreams';
-
+  import swal from 'sweetalert';
 
 
   class Settings extends React.Component {
-
-   
-
-
     constructor(props) {
         super(props);
+        this.props.history;
           this.state = {
           'email': '',
           'password': '',
@@ -57,10 +51,17 @@ import UserSavedStreams from '../UserSavedStreams/UserSavedStreams';
           this.setState({currentEmail : user.email})
           this.setState({email: ''})
           this.props.history.push("/settings")
-          
-
+          swal({
+            title: "Email updated successfully!",
+            icon: "success",
+          });
         } else {
-          console.log("Did not work")
+          swal({
+            title: "Something went wrong!",
+            text: "Please try again",
+            icon: "warning",
+          });
+          //console.log("Did not work")
             
         }   
       })
@@ -79,10 +80,18 @@ import UserSavedStreams from '../UserSavedStreams/UserSavedStreams';
       .then(user => {
         if (user.id) {
           this.setState({password: ''})
-          this.props.history.push("/settings")  
+          this.props.history.push("/settings")
+          swal({
+            title: "Password updated successfully!",
+            icon: "success",
+          });
         } else {
-          console.log("Did not work")
-            
+          swal({
+            title: "Something went wrong!",
+            text: "Please try again",
+            icon: "warning",
+          });
+          //console.log("Did not work") 
         }   
       })
   }
@@ -101,19 +110,24 @@ import UserSavedStreams from '../UserSavedStreams/UserSavedStreams';
         if (user.id) {
           this.setState({bio: ''})
           this.props.history.push("/settings")  
+          swal({
+            title: "Bio was updated successfully!",
+            icon: "success",
+            
+          });
         } else {
-          console.log("Did not work")
+          swal({
+            title: "Something went wrong!",
+            text: "Please try again",
+            icon: "warning",
+           
+          });
+          //console.log("Did not work")
             
         }   
       })
   }
 
-
-
-
-
-
-    
       validateEmail(e) {
         const emailRex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         const { validate } = this.state

@@ -14,7 +14,7 @@ import { FaUserCircle, FaSignInAlt, FaChalkboardTeacher, FaTachometerAlt, FaCog,
 
 function logout(event) {
   event.preventDefault(); // prevent page transition
-  fetch('/logout', { method: 'POST' }).then(() =>
+  fetch('http://localhost:3000/logout', { method: 'POST' }).then(() =>
     window.location.reload() // stay at the same url
   )
 }
