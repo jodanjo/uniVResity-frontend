@@ -3,8 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "ajv": "^6.5.4",
     "bootstrap": "^4.1.1",
     "history": "^4.7.2",
+    "jquery": "^3.3.1",
     "knex": "^0.15.2",
     "pg": "^7.4.3",
     "prop-types": "^15.6.2",
