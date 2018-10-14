@@ -19,10 +19,10 @@ import Stream from './components/Stream/Stream';
 
 
 
-const AuthRoute = ({ component: Component, user, isSignedIn, loadStream, ...rest }) => (
+const AuthRoute = ({ component: Component, user, isSignedIn, loadStream, fetchStreams, ...rest }) => (
   <Route {...rest} render={(props) => (
     isSignedIn === true
-      ? <Component {...props} user={user} isSignedIn = {isSignedIn} loadStream={loadStream} />
+      ? <Component {...props} user={user} isSignedIn = {isSignedIn} loadStream={loadStream} fetchStreams={fetchStreams} />
       : <Redirect to='/login'/>
   )} />
 );
@@ -40,7 +40,8 @@ class App extends Component {
           name: '',
           email: '',
           joined: '',
-          bio: ''
+          bio: '',
+          photo: ''
         }
       }
     }
@@ -52,6 +53,7 @@ class App extends Component {
       email: data.email,
       bio: data.bio,
       joined: data.joined,
+      photo: data.photo,
     }})
   }
 
@@ -68,7 +70,7 @@ class App extends Component {
 
 
     fetchStreams = () =>{
-      fetch('https://fierce-fortress-43881.herokuapp.com/public_streams' || 'http://localhost:3000/public_streams')
+      fetch('http://localhost:3000/public_streams')
       .then(response=> response.json())
       .then(streams => this.setState({streams : streams}));  
     }
@@ -117,7 +119,7 @@ class App extends Component {
               <Login loadUser={this.loadUser} auth={this.auth}/>
             )}/>
             <AuthRoute path='/createstream' loadStream={this.loadStream} isSignedIn={isSignedIn} user={user} component={CreateStream}/>
-            <AuthRoute path='/dashboard' user={user} isSignedIn={isSignedIn} component={Dashboard} />
+            <AuthRoute path='/dashboard' user={user} isSignedIn={isSignedIn} fetchStreams={this.fetchStreams} component={Dashboard} />
             <AuthRoute path='/settings' user={user} isSignedIn={isSignedIn} component={Settings} />
             <Route path ='/stream/' isSignedIn={this.isSignedIn} component={Stream} />
             <Route isSignedIn={this.isSignedIn} component={Error} />

@@ -46,7 +46,7 @@ import swal from 'sweetalert';
         return (
           <div className='inline'>
             <Card style={{ width: '300px', marginTop:'20px', marginLeft:'10px', marginBottom:'5px'}}>
-              <CardImg alt='stream' height='250px' src={`https://picsum.photos/300/?image=${urlid}`} />
+              <CardImg alt='stream' height='250px' src={`http://localhost:3000/photos/${photo}`} />
               <CardBody>
                 <CardTitle style={{fontWeight:'500', fontSize:'20px', overflowY: 'hidden', height:'125px'}}>{title}</CardTitle>
                 <CardText style={{textAlign:'left', marginTop:'10px', overflowY: 'hidden', height:'120px', fontSize:'13px'}}>{headline}</CardText>

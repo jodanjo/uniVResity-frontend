@@ -16,7 +16,7 @@ import {Link} from 'react-router-dom';
      };
   }
   user = this.props.user;
-  streams = this.props.streams;
+  //streams = this.props.streams;
   
 fetchFavs = () => {
   fetch('http://localhost:3000/saved_streams', {
@@ -29,6 +29,7 @@ fetchFavs = () => {
 } 
 
 fetchOwnedStreams = () => {
+  this.props.fetchStreams();
   fetch('http://localhost:3000/owned_streams', {
       method: 'post',
       headers: {'Content-Type': 'application/json'},
@@ -53,7 +54,7 @@ const owned = this.state.owned;
             <Container>
           <Row>
           <Col lg='4' md='6'>
-          <UserCard name={this.user.name} bio= {this.user.bio}/>
+          <UserCard name={this.user.name} bio= {this.user.bio} photo= {this.user.photo}/>
           <hr/>
           <p style={{textAlign:'left'}}>Email: {this.user.email}</p>
           <Link to="/settings">
@@ -93,6 +94,7 @@ const owned = this.state.owned;
               title={owned[i].title} 
               headline={owned[i].headline} 
               url={owned[i].url}
+              photo={owned[i].photo}
             />
             );
           })}

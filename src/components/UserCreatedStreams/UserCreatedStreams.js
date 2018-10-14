@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom';
 import { withAlert } from 'react-alert';
 import swal from 'sweetalert';
 
-const UserCreatedStreams = ({ userid, title, description, headline, url, removeDeleted, removeFav }) => {
+const UserCreatedStreams = ({ userid, title, description, headline, url, photo, removeDeleted, removeFav }) => {
     
    // console.log(userFavs);
 
@@ -16,6 +16,7 @@ const onDeleteStream = () => {
             body: JSON.stringify({
               userid: userid,
               url: url,
+              photo: photo,
             })
           })
             .then(response => response.json())

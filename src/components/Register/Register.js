@@ -7,16 +7,17 @@ import {
   } from 'reactstrap';
   import { withRouter } from "react-router-dom";
   import { withAlert } from 'react-alert';
-
+  import axios from 'axios';
+  
   class Register extends React.Component {
     constructor(props) {
         super(props);
-        this.props.history,
           this.state = {
           'email': '',
           'password': '',
           'name': '',
           'bio': '',
+          'photo':'',
           validate: {
             emailState: '',
             passwordState: '',
@@ -26,7 +27,25 @@ import {
         this.handleChange = this.handleChange.bind(this);
       }
 
+      state = {
+        selectedFile: null
+      }
+      fileSelectHandler = event => {
+        this.setState( { selectedFile: event.target.files[0]} )
+      }  
+
       onSubmitSignIn = () => {
+              if (this.state.selectedFile){
+                const fd = new FormData();
+                fd.append('image', this.state.selectedFile, this.state.selectedFile.name)
+                axios.post('http://localhost:3000/upload', fd)
+                .then(res => { 
+                  this.onPhotoReceived(res.data);
+                 }); 
+              } else {this.onPhotoReceived('nouserphoto.png'); }
+        }
+
+      onPhotoReceived = (imgFileName) => {
     fetch('http://localhost:3000/register', {
       method: 'post',
       headers: {'Content-Type': 'application/json'},
@@ -34,7 +53,8 @@ import {
         email: this.state.email,
         password: this.state.password,
         name: this.state.name,
-        bio: this.state.bio
+        bio: this.state.bio,
+        photo: imgFileName
       })
     })
       .then(response => response.json())
@@ -131,7 +151,7 @@ import {
               <Col>
               <FormGroup>
           <Label for="exampleFile">Upload Profile Photo</Label>
-          <Input type="file" name="file" id="exampleFile"/>
+          <Input type="file" id="exampleFile" onChange={this.fileSelectHandler} accept="image/gif,image/jpeg,image/jpg,image/png" />
         </FormGroup>
               </Col>
               <Col>

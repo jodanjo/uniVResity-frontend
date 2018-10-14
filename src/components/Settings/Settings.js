@@ -30,6 +30,8 @@ import {
         this.handleChange = this.handleChange.bind(this);
       }
 
+      user = this.props.user;
+
       onEmailChange = (event) => {
     this.setState({email: event.target.value})
 }
@@ -188,7 +190,7 @@ import {
             <Container>
           <Row>
           <Col lg='4' md='6'>
-          <UserCard name= "Current Profile Picture" bio =" "/>
+          <UserCard name={this.user.name} bio= {this.user.bio} photo= {this.user.photo}/>
           <br/>
           <FormGroup>
           <Label for="exampleFile" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Change Profile Picture</Label>

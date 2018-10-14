@@ -5,7 +5,8 @@ import {
     Button, FormFeedback, Row, FormText
   } from 'reactstrap';
 import { withRouter } from "react-router-dom";
-import { withAlert } from 'react-alert';  
+import { withAlert } from 'react-alert';
+import axios from 'axios';
 
 const generateURL =() =>{
   var url = '';
@@ -25,31 +26,47 @@ class CreateStream extends React.Component {
           'headline': '',
           'description': '',
           'is_private': 'FALSE',
-
-          
+          'photo':'',
           validate: {
             titleState: '',
             subjectState: '',
             headlineState: '',
-            descriptionState: '',
           },
         }
         this.handleChange = this.handleChange.bind(this);
       }
 
-       onSubmitStream = () => {
-    fetch( 'https://fierce-fortress-43881.herokuapp.com/createstream' || 'http://localhost:3000/createstream', {
-      method: 'post',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({
-        url:generateURL(),
-        title: this.state.title,
-        subject: this.state.subject,
-        headline: this.state.headline,
-        description: this.state.description,
-        is_private: this.state.is_private,
-        owner: this.props.user.id
-        
+    state = {
+      selectedFile: null
+    }
+    fileSelectHandler = event => {
+      this.setState( { selectedFile: event.target.files[0]} )
+    }  
+
+        onSubmitStream = () => {
+              if (this.state.selectedFile){
+                const fd = new FormData();
+                fd.append('image', this.state.selectedFile, this.state.selectedFile.name)
+                axios.post('http://localhost:3000/upload', fd)
+                .then(res => { 
+                  this.onPhotoReceived(res.data);
+                 }); 
+              } else {this.onPhotoReceived('noimage.png'); }
+        }
+       
+        onPhotoReceived = (imgFileName) => {
+        fetch('http://localhost:3000/createstream', {
+          method: 'post',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({
+            url:generateURL(),
+            title: this.state.title,
+            subject: this.state.subject,
+            headline: this.state.headline,
+            description: this.state.description,
+            is_private: this.state.is_private,
+            owner: this.props.user.id,
+            photo: imgFileName
       })
     })
       .then(response => response.json())
@@ -64,7 +81,6 @@ class CreateStream extends React.Component {
       })
 
   }
-    
 
       validateTitle(e) {
             const titleRex = /^(?=.{3,128}$)/;
@@ -96,16 +112,6 @@ class CreateStream extends React.Component {
               }
               this.setState({ validate })
             }
-      validateDescription(e) {
-            const descriptionRex = /^(?=.{50,500}$)/;
-            const { validate } = this.state
-              if (descriptionRex.test(e.target.value)) {
-                validate.descriptionState = 'has-success'
-              } else {
-                validate.descriptionState = 'has-danger'
-              }
-              this.setState({ validate })
-            }
       
       handleChange = async (event) => {
         const { target } = event;
@@ -133,8 +139,7 @@ class CreateStream extends React.Component {
     //const { auth } = this.props;
     const isEnabled = this.state.validate.titleState === 'has-success' 
                    && this.state.validate.subjectState === 'has-success'
-                   && this.state.validate.headlineState === 'has-success'  
-                   && this.state.validate.descriptionState === 'has-success';
+                   && this.state.validate.headlineState === 'has-success';  
     return (
         <div style={{paddingLeft:'10px', paddingRight:'10px', marginTop:'30px', marginLeft:'10px', marginRight:'10px', textAlign:'left'}}>
       <Form onSubmit={ (e) => this.submitForm(e) }>
@@ -208,23 +213,17 @@ class CreateStream extends React.Component {
           <Input type="textarea"
                  name="description" 
                  id="description" 
-                 placeholder="Detailed description"
+                 placeholder="Optional detailed description, max 500 chars "
                  value={ description }
-                 valid={ this.state.validate.descriptionState === 'has-success' }
-                 invalid={ this.state.validate.descriptionState === 'has-danger' }
                  onChange={ (e) => {
-                                this.validateDescription(e)
                                 this.handleChange(e)
                               } }
 
                  />
-                  <FormFeedback>
-                    Please enter a detailed description, 50 to 500 characters
-                  </FormFeedback>
         </FormGroup>
         <FormGroup>
           <Label for="exampleFile">Upload Image</Label>
-          <Input type="file" name="file" id="exampleFile"/>
+          <Input type="file" id="exampleFile" onChange={this.fileSelectHandler} accept="image/gif,image/jpeg,image/jpg,image/png" />
           <FormText color="muted">
             Select an image cover
           </FormText>
