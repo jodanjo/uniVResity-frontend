@@ -18,13 +18,16 @@ function logout(event) {
   )
 }
 
+
 const Navigation = ({ isSignedIn, name, photo }) => {
   if (!isSignedIn) {
     return (
       <div>
-        <Navbar className="Navbar" color="light" light expand="md">
+        <Navbar className="Navbar" color="white" light expand="md">
           <Link to="/">
-            <Navbar className="NavbarBrand" >uniVResity</Navbar>
+            <Navbar>
+              <img src="images/logo.jpg" height="55" width="140" alt="uniVresity" />
+            </Navbar>
           </Link>
             <Nav className="ml-auto" navbar>
                   <NavItem>
@@ -41,9 +44,9 @@ const Navigation = ({ isSignedIn, name, photo }) => {
       );
       } else {
               return (
-                <Navbar className="Navbar" color="light" light expand="md">
+                <Navbar className="Navbar" color="white" light expand="md">
                   <Link to="/">
-                    <Navbar className="NavbarBrand">uniVResity</Navbar>
+                  <img src="images/logo.jpg" height="60" width="120" alt="uniVresity" />
                   </Link>
                   <Nav className="ml-auto" navbar>
                   <Link to="/createstream">
