@@ -10,7 +10,7 @@ const UserCard = ({bio, name, photo}) => {
     return(
         <div>
 <Card style={{ width: '300px', marginTop:'20px', marginLeft:'10px', marginBottom:'5px'}}>
-<CardImg top width="100%" src={`http://localhost:3000/photos/${photo}`} alt="Card image cap"  height="200" width="200" />
+<CardImg top width="100%" src={`http://localhost:3000/photos/${photo}`} alt="Card image cap"/>
   <CardBody>
     <CardTitle style={{fontWeight:'500', fontSize:'24px'}}>{`${name}`}</CardTitle>
     <CardText style={{textAlign:'left', marginTop:'10px'}}>{`${bio}`}</CardText>
