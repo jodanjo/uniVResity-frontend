@@ -51,7 +51,7 @@ const Navigation = ({ isSignedIn, name, photo }) => {
                   </Link>
               <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle style={{ marginTop: '15px'}} nav caret>
-                <img className='circle' src={`http://localhost:3000/photos/${photo}`} 
+                <img alt="user profile" className='circle' src={`http://localhost:3000/photos/${photo}`} 
                 height="42" width="42"/>  {`${name}`}
                 </DropdownToggle>
                 <DropdownMenu right>

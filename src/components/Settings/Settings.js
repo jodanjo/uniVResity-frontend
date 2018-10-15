@@ -1,5 +1,4 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
 import {
     Container, Col, Form,
     FormGroup, Label, Input,
@@ -13,7 +12,6 @@ import {
   class Settings extends React.Component {
     constructor(props) {
         super(props);
-        this.props.history;
           this.state = {
           'email': '',
           'password': '',
@@ -52,7 +50,6 @@ import {
         if (user.id) {
           this.setState({currentEmail : user.email})
           this.setState({email: ''})
-          this.props.history.push("/settings")
           swal({
             title: "Email updated successfully!",
             icon: "success",
@@ -82,7 +79,6 @@ import {
       .then(user => {
         if (user.id) {
           this.setState({password: ''})
-          this.props.history.push("/settings")
           swal({
             title: "Password updated successfully!",
             icon: "success",
@@ -173,7 +169,6 @@ import {
        
 
         //const { auth } = this.props;
-        const isEnabled = this.state.validate.emailState === 'has-success' && this.state.validate.passwordState === 'has-success' && this.state.validate.nameState === 'has-success';
         const isEnabledEmail = this.state.validate.emailState === 'has-success';
         const isEnabledPassword = this.state.validate.passwordState === 'has-success';
         return (

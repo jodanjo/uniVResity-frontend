@@ -14,7 +14,6 @@ import {
   class Login extends React.Component {
     constructor(props) {
         super(props);
-        this.props.history;
           this.state = {
           'email': '',
           'password': '',
