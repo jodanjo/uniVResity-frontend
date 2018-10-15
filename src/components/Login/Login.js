@@ -118,7 +118,7 @@ import {
                 />   
                 </FormGroup>
               </Col>
-              <Button color="success" onClick={this.onSubmitSignIn} block>Submit
+              <Button type="submit" color="success" onClick={this.onSubmitSignIn} block>Submit
               </Button>
               <Link to="/register">
                 <Button outline color="secondary" block >New to uniVResity? Register!</Button>

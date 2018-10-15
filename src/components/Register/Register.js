@@ -8,7 +8,7 @@ import {
   import { withRouter } from "react-router-dom";
   import { withAlert } from 'react-alert';
   import axios from 'axios';
-  
+
   class Register extends React.Component {
     constructor(props) {
         super(props);
@@ -216,7 +216,7 @@ import {
             />
         </FormGroup>
         </Col>
-              <Button disabled={!isEnabled} color="primary" onClick={this.onSubmitSignIn} block>Join</Button>
+              <Button type="submit" disabled={!isEnabled} color="primary" onClick={this.onSubmitSignIn} block>Join</Button>
               <Link to="/login">
                 <Button outline color="secondary" block>Already have an account? Sign in!</Button>
               </Link>
