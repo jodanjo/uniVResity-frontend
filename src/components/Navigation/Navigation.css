@@ -14,3 +14,7 @@
 .inline {
     display: inline-block;
 }
+
+.circle {
+    border-radius: 50%;
+}

@@ -9,8 +9,7 @@ import {
   DropdownMenu,
   Button,
   DropdownItem } from 'reactstrap';
-import { FaUserCircle, FaSignInAlt, FaChalkboardTeacher, FaTachometerAlt, FaCog, FaSignOutAlt } from '../../../node_modules/react-icons/fa';
-
+import { FaSignInAlt, FaChalkboardTeacher, FaTachometerAlt, FaCog, FaSignOutAlt } from '../../../node_modules/react-icons/fa';
 
 function logout(event) {
   event.preventDefault(); // prevent page transition
@@ -19,8 +18,7 @@ function logout(event) {
   )
 }
 
-
-const Navigation = ({ isSignedIn, name}) => {
+const Navigation = ({ isSignedIn, name, photo }) => {
   if (!isSignedIn) {
     return (
       <div>
@@ -53,7 +51,8 @@ const Navigation = ({ isSignedIn, name}) => {
                   </Link>
               <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle style={{ marginTop: '15px'}} nav caret>
-                  <FaUserCircle size={18} style ={{marginTop:'15px'}} color={'dodgerblue'}/> {`${name}`}
+                <img className='circle' src={`http://localhost:3000/photos/${photo}`} 
+                height="42" width="42"/>  {`${name}`}
                 </DropdownToggle>
                 <DropdownMenu right>
                   <DropdownItem>
@@ -64,7 +63,7 @@ const Navigation = ({ isSignedIn, name}) => {
                   </DropdownItem>
                   <DropdownItem divider />
                   <DropdownItem >
-                    <Link to="/logout" style={{color:'black', textDecoration:'none'}}><p onClick={logout}><FaSignOutAlt/> Sign out</p></Link>
+                  <Link to="/logout" style={{color:'black', textDecoration:'none'}}><p onClick={logout}><FaSignOutAlt/> Sign out</p></Link>
                   </DropdownItem>
                 </DropdownMenu>
               </UncontrolledDropdown>

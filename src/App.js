@@ -28,6 +28,8 @@ const AuthRoute = ({ component: Component, user, isSignedIn, loadStream, fetchSt
 );
 
 
+
+
 class App extends Component {
     constructor() {
       super();
@@ -68,7 +70,6 @@ class App extends Component {
     }})
   }
 
-
     fetchStreams = () =>{
       fetch('http://localhost:3000/public_streams')
       .then(response=> response.json())
@@ -103,7 +104,7 @@ class App extends Component {
         <HashRouter >
         <div className="App"> 
       <Navigation isSignedIn={isSignedIn} 
-      name={user.name}
+      name={user.name} photo={user.photo}
       />
          <Switch>
             <Route exact path='/' render={() => (
