@@ -46,7 +46,7 @@ const Navigation = ({ isSignedIn, name, photo }) => {
               return (
                 <Navbar className="Navbar" color="white" light expand="md">
                   <Link to="/">
-                  <img src="images/logo.jpg" height="60" width="120" alt="uniVresity" />
+                  <img src="images/logo.jpg" height="55" width="140" alt="uniVresity" />
                   </Link>
                   <Nav className="ml-auto" navbar>
                   <Link to="/createstream">
