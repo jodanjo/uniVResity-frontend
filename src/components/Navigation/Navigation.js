@@ -26,7 +26,7 @@ const Navigation = ({ isSignedIn, name, photo }) => {
         <Navbar className="Navbar" color="white" light expand="md">
           <Link to="/">
             <Navbar>
-              <img src="images/logo.jpg" height="55" width="140" alt="uniVresity" />
+              <img src="images/logo.jpg" height="55" width="196" alt="uniVresity" />
             </Navbar>
           </Link>
             <Nav className="ml-auto" navbar>
