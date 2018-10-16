@@ -8,6 +8,7 @@ import { withRouter } from "react-router-dom";
 import { withAlert } from 'react-alert';
 import axios from 'axios';
 
+//generates a 10 char string used for the unique stream url
 const generateURL =() =>{
   var url = '';
   const possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -74,7 +75,6 @@ class CreateStream extends React.Component {
       .then(stream => {
         if (stream) {
           this.props.loadStream(stream)
-          //console.log(stream)
           //console.log(this.props.user.id)
           this.props.alert.success(`Stream ${stream.title}, created successfully!`)
           this.props.history.push('/dashboard')
@@ -137,7 +137,6 @@ class CreateStream extends React.Component {
 
   render() {
     const { title, subject, headline, description } = this.state;
-    //const { auth } = this.props;
     const isEnabled = this.state.validate.titleState === 'has-success' 
                    && this.state.validate.subjectState === 'has-success'
                    && this.state.validate.headlineState === 'has-success';  
