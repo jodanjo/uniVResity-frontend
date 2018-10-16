@@ -8,6 +8,9 @@ import {
   DropdownToggle,
   DropdownMenu,
   Button,
+  NavbarToggler, 
+  Collapse,
+  NavbarBrand,
   DropdownItem } from 'reactstrap';
 import { FaSignInAlt, FaChalkboardTeacher, FaTachometerAlt, FaCog, FaSignOutAlt } from '../../../node_modules/react-icons/fa';
 
@@ -18,40 +21,67 @@ function logout(event) {
   )
 }
 
+export default class Example extends React.Component {
+  constructor(props) {
+    super(props);
 
-const Navigation = ({ isSignedIn, name, photo }) => {
+    this.toggle = this.toggle.bind(this);
+    this.state = {
+      isOpen: false
+    };
+  }
+  toggle() {
+    this.setState({
+      isOpen: !this.state.isOpen
+    });
+  }
+  render() {
+
+const  { isSignedIn, name, photo } = this.props;
   if (!isSignedIn) {
     return (
       <div>
         <Navbar className="Navbar" color="white" light expand="md">
-          <Link to="/">
-            <Navbar>
+        <Link to="/">
+            <NavbarBrand>
               <img src="images/logo.jpg" height="55" width="185" alt="uniVresity" />
-            </Navbar>
+            </NavbarBrand>
           </Link>
+          <NavbarToggler onClick={this.toggle} />
+          <Collapse isOpen={this.state.isOpen} navbar >
             <Nav className="ml-auto" navbar>
                   <NavItem>
               <Link to="/register">
-                <Button outline color ="secondary" style={{height:'40px', marginRight: '5px'}}><p>Register</p></Button>
+                <Button outline color ="secondary" style={{height:'40px', marginRight: '5px', marginBottom:'5px'}}><p>Register</p></Button>
               </Link>
               </NavItem>
+              <NavItem>
               <Link to="/login">
               <Button color="danger" style={{height:'40px'}}><p><FaSignInAlt/> Sign in</p></Button>
               </Link>
+              </NavItem>
               </Nav>
+              </Collapse>
             </Navbar>
       </div>
       );
       } else {
               return (
                 <Navbar className="Navbar" color="white" light expand="md">
+                <NavbarBrand>
                   <Link to="/">
                   <img src="images/logo.jpg" height="55" width="185" alt="uniVresity" />
                   </Link>
+                  </NavbarBrand>
+                  <NavbarToggler onClick={this.toggle} className="mr-2"/>
+                  <Collapse isOpen={this.state.isOpen} navbar>
                   <Nav className="ml-auto" navbar>
+                  <NavItem>
                   <Link to="/createstream">
                   <Button outline color="danger" style={{height:'40px', marginTop:'25px'}}><p><FaChalkboardTeacher/> Create A New Stream</p></Button>
                   </Link>
+                  </NavItem>
+
               <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle style={{ marginTop: '15px'}} nav caret>
                 <img alt="user profile" className='circle' src={`http://localhost:3000/photos/${photo}`} 
@@ -71,12 +101,10 @@ const Navigation = ({ isSignedIn, name, photo }) => {
                 </DropdownMenu>
               </UncontrolledDropdown>
               </Nav>
+              </Collapse>
         </Navbar>
         
     );
   }
 }
-
-
-
-  export default Navigation;
+}
