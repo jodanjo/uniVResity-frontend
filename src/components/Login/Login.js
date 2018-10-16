@@ -77,6 +77,8 @@ import {
         const { email, password } = this.state;
         return (
           <Container className="app" style={{background:'white'}}>
+          <img style={{marginLeft:'75px'}}src="images/logo.jpg" height="55" width="185" alt="uniVresity" />
+          <hr/>
           <div>
             <h3>Sign In</h3>
             <Form className="form" onSubmit={ (e) => this.submitForm(e) }>
