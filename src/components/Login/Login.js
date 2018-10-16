@@ -25,29 +25,29 @@ import {
       
       }
 
-      onSubmitSignIn = () => {
-    fetch('http://localhost:3000/login', {
-      method: 'post',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({
-        email: this.state.email,
-        password: this.state.password
+    onSubmitSignIn = () => {
+      fetch('http://localhost:3000/login', {
+        method: 'post',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+          email: this.state.email,
+          password: this.state.password
+        })
       })
-    })
-      .then(response => response.json())
-      .then(user => {
-        if (user.id) {
-          this.props.loadUser(user)
-          //console.log(user.name);
-          this.props.alert.success(`${user.name}, you are logged in!`)
-          this.props.history.push("/")
-          this.props.auth(true);
-        } else {
-          this.props.alert.error(JSON.stringify(user).replace(/^"(.+(?="$))"$/, '$1'));
-        }
-      })
-  }
-    
+        .then(response => response.json())
+        .then(user => {
+          if (user.id) {
+            this.props.loadUser(user)
+            //console.log(user.name);
+            this.props.alert.success(`${user.name}, you are logged in!`)
+            this.props.history.push("/")
+            this.props.auth(true);
+          } else {
+            this.props.alert.error(JSON.stringify(user).replace(/^"(.+(?="$))"$/, '$1'));
+          }
+        })
+    }
+  
       validateEmail(e) {
         const emailRex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         const { validate } = this.state
@@ -68,10 +68,11 @@ import {
         });
       }
     
+      //prevents submission of the form when Submit button is clicked. Form data is submited by the onSubmitSignIn function.
       submitForm(e) {
         e.preventDefault();
-        //console.log(`Email: ${ this.state.email }`)
       }
+    
     render() {
         const { email, password } = this.state;
         return (

@@ -6,8 +6,7 @@ import swal from 'sweetalert';
 
 const UserCreatedStreams = ({ userid, title, description, headline, url, photo, removeDeleted, removeFav }) => {
     
-   // console.log(userFavs);
-
+   
 const onDeleteStream = () => {
           //console.log(`User ${userid} clicked to save stream ${url}`)
           fetch(  'http://localhost:3000/delete_stream', {

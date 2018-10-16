@@ -30,10 +30,12 @@ import {
       state = {
         selectedFile: null
       }
+      
       fileSelectHandler = event => {
         this.setState( { selectedFile: event.target.files[0]} )
       }  
 
+      //submits user photo to back-end server using the axios library, receives back the assigned filename, passes it to onPhotoReceived function
       onSubmitSignIn = () => {
               if (this.state.selectedFile){
                 const fd = new FormData();
@@ -45,30 +47,31 @@ import {
               } else {this.onPhotoReceived('nouserphoto.png'); }
         }
 
+      //submits the form data using fetch method to back-end server. If registration is a success, displays welcome message, redirects to homepage
       onPhotoReceived = (imgFileName) => {
-    fetch('http://localhost:3000/register', {
-      method: 'post',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({
-        email: this.state.email,
-        password: this.state.password,
-        name: this.state.name,
-        bio: this.state.bio,
-        photo: imgFileName
-      })
-    })
-      .then(response => response.json())
-      .then(user => {
-        if (user.id) {
-          this.props.loadUser(user)
-          this.props.alert.success(`Welcome to UniVResity, ${user.name}, you are now registered and logged in!`)
-          this.props.history.push("/")
-          this.props.auth(true);
-        } else {
-            this.props.alert.error(JSON.stringify(user).replace(/^"(.+(?="$))"$/, '$1'));
-        }   
-      })
-  }
+        fetch('http://localhost:3000/register', {
+          method: 'post',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({
+            email: this.state.email,
+            password: this.state.password,
+            name: this.state.name,
+            bio: this.state.bio,
+            photo: imgFileName
+          })
+        })
+          .then(response => response.json())
+          .then(user => {
+            if (user.id) {
+              this.props.loadUser(user)
+              this.props.alert.success(`Welcome to UniVResity, ${user.name}, you are now registered and logged in!`)
+              this.props.history.push("/")
+              this.props.auth(true);
+            } else {
+                this.props.alert.error(JSON.stringify(user).replace(/^"(.+(?="$))"$/, '$1'));
+            }   
+          })
+      }
     
       validateEmail(e) {
         const emailRex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -81,28 +84,28 @@ import {
           this.setState({ validate })
         }
 
-        validatePassword(e) {
-          const pwRex = /^(?=.{8,})/;
+      validatePassword(e) {
+        const pwRex = /^(?=.{8,})/;
+        const { validate } = this.state
+          if (pwRex.test(e.target.value)) {
+            validate.passwordState = 'has-success'
+          } else {
+            validate.passwordState = 'has-danger'
+          }
+          this.setState({ validate })
+        }
+
+        validateName(e) {
+          const nameRex = /^(?=.{3,})/;
           const { validate } = this.state
-            if (pwRex.test(e.target.value)) {
-              validate.passwordState = 'has-success'
+            if (nameRex.test(e.target.value)) {
+              validate.nameState = 'has-success'
             } else {
-              validate.passwordState = 'has-danger'
+              validate.nameState = 'has-danger'
             }
             this.setState({ validate })
           }
-
-          validateName(e) {
-            const nameRex = /^(?=.{3,})/;
-            const { validate } = this.state
-              if (nameRex.test(e.target.value)) {
-                validate.nameState = 'has-success'
-              } else {
-                validate.nameState = 'has-danger'
-              }
-              this.setState({ validate })
-            }
-    
+  
       handleChange = async (event) => {
         const { target } = event;
         const value = target.type === 'checkbox' ? target.checked : target.value;
@@ -118,7 +121,6 @@ import {
       }
     render() {
         const { email, password, name, bio } = this.state;
-        //const { auth } = this.props;
         const isEnabled = this.state.validate.emailState === 'has-success' && this.state.validate.passwordState === 'has-success' && this.state.validate.nameState === 'has-success';
         return (
           <Container className="app">

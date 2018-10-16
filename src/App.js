@@ -15,10 +15,8 @@ import Dashboard from './components/Dashboard/Dashboard';
 import Settings from './components/Settings/Settings';
 import Error from './components/Error/Error';
 import Stream from './components/Stream/Stream';
-//import history from './history';
 
-
-
+//PrivateRoute component. Checks if the user isSignedIn. If yes, it renders the “component” prop. If not, it redirects the user to /login.
 const AuthRoute = ({ component: Component, user, isSignedIn, loadStream, fetchStreams, ...rest }) => (
   <Route {...rest} render={(props) => (
     isSignedIn === true
@@ -26,8 +24,6 @@ const AuthRoute = ({ component: Component, user, isSignedIn, loadStream, fetchSt
       : <Redirect to='/login'/>
   )} />
 );
-
-
 
 
 class App extends Component {
@@ -76,14 +72,17 @@ class App extends Component {
       .then(streams => this.setState({streams : streams}));  
     }
   
+    //Immediately after a component is mounted the function invokes fetchStreams that gets the stream data from the back-end server
     componentDidMount(){
       this.fetchStreams();
     }
 
+    //updates the state of the searchfield when the user types in the searchbox
     onSearchChange = (event) => {
       this.setState({ searchfield: event.target.value })
     }
   
+    //sets the isSignedIn value to true or false if the user is signed in or not
     auth = (isAuth) => {
       if (isAuth) {
         this.setState({isSignedIn: true})
@@ -92,13 +91,10 @@ class App extends Component {
       } 
     }
 
-
-
     render() {
       const filteredStreams  = this.state.streams.filter(stream => {
         return stream.title.toLowerCase().includes(this.state.searchfield.toLowerCase())
       })
-      //console.log(filteredStreams);
       const { isSignedIn, user } = this.state;
       return (
         <HashRouter >

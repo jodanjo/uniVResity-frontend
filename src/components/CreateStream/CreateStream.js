@@ -42,7 +42,7 @@ class CreateStream extends React.Component {
     fileSelectHandler = event => {
       this.setState( { selectedFile: event.target.files[0]} )
     }  
-
+        //submits stream photo to back-end server using the axios library, receives back the assigned filename, passes it to onPhotoReceived function
         onSubmitStream = () => {
               if (this.state.selectedFile){
                 const fd = new FormData();
@@ -53,7 +53,8 @@ class CreateStream extends React.Component {
                  }); 
               } else {this.onPhotoReceived('noimage.png'); }
         }
-       
+        
+        //submits the form data using fetch method to back-end server. If stream creation is a success, displays success message, redirects to dashboard
         onPhotoReceived = (imgFileName) => {
         fetch('http://localhost:3000/createstream', {
           method: 'post',

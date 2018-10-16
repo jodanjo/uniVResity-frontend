@@ -16,8 +16,8 @@ import {Link} from 'react-router-dom';
      };
   }
   user = this.props.user;
-  //streams = this.props.streams;
-  
+
+//fetches the favorite streams data of the authenticated user
 fetchFavs = () => {
   fetch('http://localhost:3000/saved_streams', {
       method: 'post',
@@ -28,6 +28,7 @@ fetchFavs = () => {
       .then(favs => this.setState({favs : favs}));  
 } 
 
+//fetches the streams created data by the authenticated user
 fetchOwnedStreams = () => {
   this.props.fetchStreams();
   fetch('http://localhost:3000/owned_streams', {
@@ -45,10 +46,8 @@ componentDidMount = () => {
 }
 
 render(){
-//console.log(this.user);
 const favs = this.state.favs;
 const owned = this.state.owned;
-//console.log(`favs are ${favs}`);
         return (
             <div>
             <Container>
