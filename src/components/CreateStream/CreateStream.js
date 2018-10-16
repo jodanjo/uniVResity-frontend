@@ -2,7 +2,7 @@ import React from 'react';
 import {
     Container, Col, Form,
     FormGroup, Label, Input,
-    Button, FormFeedback, Row, FormText
+    Button, FormFeedback, Row, FormText, Card
   } from 'reactstrap';
 import { withRouter } from "react-router-dom";
 import { withAlert } from 'react-alert';
@@ -141,7 +141,8 @@ class CreateStream extends React.Component {
                    && this.state.validate.subjectState === 'has-success'
                    && this.state.validate.headlineState === 'has-success';  
     return (
-        <div style={{paddingLeft:'10px', paddingRight:'10px', marginTop:'30px', marginLeft:'10px', marginRight:'10px', textAlign:'left'}}>
+        <div style={{paddingLeft:'30px', paddingRight:'30px', marginTop:'30px',  textAlign:'left', marginBottom:'30px'}}>
+        <Card>
       <Form onSubmit={ (e) => this.submitForm(e) }>
         <Container>
           <h3 style={{marginBottom:'30px', marginTop:'10px'}}>Course Details</h3>
@@ -260,7 +261,7 @@ class CreateStream extends React.Component {
         <Button disabled={!isEnabled} color="primary" onClick={this.onSubmitStream} style={{marginBottom:'15px'}}>Create Stream</Button>
         </Container>
       </Form>
- 
+      </Card>
       </div>
     );
   }
