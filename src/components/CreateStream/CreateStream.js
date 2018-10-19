@@ -48,7 +48,7 @@ class CreateStream extends React.Component {
               if (this.state.selectedFile){
                 const fd = new FormData();
                 fd.append('image', this.state.selectedFile, this.state.selectedFile.name)
-                axios.post('http://localhost:3000/upload', fd)
+                axios.post('https://fierce-fortress-43881.herokuapp.com/upload', fd)
                 .then(res => { 
                   this.onPhotoReceived(res.data);
                  }); 
@@ -57,7 +57,7 @@ class CreateStream extends React.Component {
         
         //submits the form data using fetch method to back-end server. If stream creation is a success, displays success message, redirects to dashboard
         onPhotoReceived = (imgFileName) => {
-        fetch('http://localhost:3000/createstream', {
+        fetch('https://fierce-fortress-43881.herokuapp.com/createstream', {
           method: 'post',
           headers: {'Content-Type': 'application/json'},
           body: JSON.stringify({

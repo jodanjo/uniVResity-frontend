@@ -9,7 +9,7 @@ const UserCreatedStreams = ({ userid, title, description, headline, url, photo, 
    
 const onDeleteStream = () => {
           //console.log(`User ${userid} clicked to save stream ${url}`)
-          fetch(  'http://localhost:3000/delete_stream', {
+          fetch(  'https://fierce-fortress-43881.herokuapp.com/delete_stream', {
             method: 'post',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({

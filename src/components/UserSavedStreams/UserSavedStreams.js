@@ -10,7 +10,7 @@ const UserSavedStreams = ({ userid, title, description, headline, url, removeFav
 
 const onUnsaveStream = () => {
           //console.log(`User ${userid} clicked to save stream ${url}`)
-          fetch(  'http://localhost:3000/unsave_stream', {
+          fetch(  'https://fierce-fortress-43881.herokuapp.com/unsave_stream', {
             method: 'post',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({

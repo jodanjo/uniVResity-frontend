@@ -19,7 +19,7 @@ import {Link} from 'react-router-dom';
 
 //fetches the favorite streams data of the authenticated user
 fetchFavs = () => {
-  fetch('http://localhost:3000/saved_streams', {
+  fetch('https://fierce-fortress-43881.herokuapp.com/saved_streams', {
       method: 'post',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({ userid: this.user.id })
@@ -31,7 +31,7 @@ fetchFavs = () => {
 //fetches the streams created data by the authenticated user
 fetchOwnedStreams = () => {
   this.props.fetchStreams();
-  fetch('http://localhost:3000/owned_streams', {
+  fetch('https://fierce-fortress-43881.herokuapp.com/owned_streams', {
       method: 'post',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({ userid: this.user.id })

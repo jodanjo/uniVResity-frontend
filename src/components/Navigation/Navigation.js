@@ -16,7 +16,7 @@ import { FaSignInAlt, FaChalkboardTeacher, FaTachometerAlt, FaCog, FaSignOutAlt 
 
 function logout(event) {
   event.preventDefault(); // prevent page transition
-  fetch('http://localhost:3000/logout', { method: 'POST' }).then(() =>
+  fetch('https://fierce-fortress-43881.herokuapp.com/logout', { method: 'POST' }).then(() =>
     window.location.reload() // stay at the same url
   )
 }
@@ -84,7 +84,7 @@ const  { isSignedIn, name, photo } = this.props;
 
               <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle style={{ marginTop: '15px'}} nav caret>
-                <img alt="user profile" className='circle' src={`http://localhost:3000/photos/${photo}`} 
+                <img alt="user profile" className='circle' src={`https://fierce-fortress-43881.herokuapp.com/photos/${photo}`} 
                 height="42" width="42"/>  {`${name}`}
                 </DropdownToggle>
                 <DropdownMenu right>

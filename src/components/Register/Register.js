@@ -40,7 +40,7 @@ import {
               if (this.state.selectedFile){
                 const fd = new FormData();
                 fd.append('image', this.state.selectedFile, this.state.selectedFile.name)
-                axios.post('http://localhost:3000/upload', fd)
+                axios.post('https://fierce-fortress-43881.herokuapp.com/upload', fd)
                 .then(res => { 
                   this.onPhotoReceived(res.data);
                  }); 
@@ -49,7 +49,7 @@ import {
 
       //submits the form data using fetch method to back-end server. If registration is a success, displays welcome message, redirects to homepage
       onPhotoReceived = (imgFileName) => {
-        fetch('http://localhost:3000/register', {
+        fetch('https://fierce-fortress-43881.herokuapp.com/register', {
           method: 'post',
           headers: {'Content-Type': 'application/json'},
           body: JSON.stringify({

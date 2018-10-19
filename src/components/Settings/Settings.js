@@ -7,6 +7,7 @@ import {
   import { withRouter } from "react-router-dom";
   import UserCard from '../UserCard/UserCard';
   import swal from 'sweetalert';
+  import axios from 'axios';
 
 
   class Settings extends React.Component {
@@ -18,10 +19,13 @@ import {
           'bio': '',
           'picture' : '',
           'currentEmail': this.props.user.email ,
+          'currentPhoto': this.props.user.photo ,
+          'photo':'',
+
           validate: {
             emailState: '',
             passwordState: '',
-            pictureState:'',
+            
      
           },
         }
@@ -37,7 +41,7 @@ import {
      
 
       onSubmitEmailChange = () => {
-    fetch('http://localhost:3000/settingsemail', {
+    fetch('https://fierce-fortress-43881.herokuapp.com/settingsemail', {
       method: 'put',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
@@ -67,7 +71,7 @@ import {
   }
 
   onSubmitPasswordChange = () => {
-    fetch('http://localhost:3000/settingspassword', {
+    fetch('https://fierce-fortress-43881.herokuapp.com/settingspassword', {
       method: 'put',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
@@ -95,7 +99,7 @@ import {
   }
 
    onSubmitBioChange = () => {
-    fetch('http://localhost:3000/settingsbio', {
+    fetch('https://fierce-fortress-43881.herokuapp.com/settingsbio', {
       method: 'put',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
@@ -125,6 +129,60 @@ import {
         }   
       })
   }
+
+
+
+   state = {
+        selectedFile: null
+      }
+      
+      fileSelectHandler = event => {
+        this.setState( { selectedFile: event.target.files[0]} )
+      }  
+
+
+
+      onSubmitPhoto = () => {
+              if (this.state.selectedFile){
+                const fd = new FormData();
+                fd.append('image', this.state.selectedFile, this.state.selectedFile.name)
+                axios.post('https://fierce-fortress-43881.herokuapp.com/upload', fd)
+                .then(res => { 
+                  this.onPhotoReceived(res.data);
+                 }); 
+              } else  {}
+        }
+
+         onPhotoReceived = (imgFileName) => {
+        fetch('https://fierce-fortress-43881.herokuapp.com/settingsphoto', {
+          method: 'post',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({
+            id: this.props.user.id,
+            photo: imgFileName
+          })
+        })
+          .then(response => response.json())
+          .then(user => {
+        if (user.id) {
+          this.setState({photo: ''})
+          this.setState({currentPhoto : user.photo})
+          this.setState({selectedFile: null})
+          swal({
+            title: "Profile Picture Changed!",
+            icon: "success",
+          });
+
+        } else {
+          swal({
+            title: "Something went wrong!",
+            text: "Please try again",
+            icon: "warning",
+          });
+          //console.log("Did not work") 
+        }   
+      })
+  } 
 
       validateEmail(e) {
         const emailRex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -165,12 +223,13 @@ import {
       }
 
     render() {
-        const { email, password, name, bio } = this.state;
+        const { email, password, photo, bio } = this.state;
        
 
         //const { auth } = this.props;
         const isEnabledEmail = this.state.validate.emailState === 'has-success';
         const isEnabledPassword = this.state.validate.passwordState === 'has-success';
+        const isEnabledPhoto = this.state.selectedFile != null;
         return (
 
 
@@ -185,11 +244,15 @@ import {
             <Container>
           <Row>
           <Col lg='4' md='6'>
-          <UserCard name={this.user.name} bio= {this.user.bio} photo= {this.user.photo}/>
+          <UserCard name={this.user.name} bio= {this.user.bio} photo= {this.state.currentPhoto}/>
           <br/>
           <FormGroup>
           <Label for="exampleFile" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Change Profile Picture</Label>
-          <Input style={{marginLeft: '27px'}} type="file" name="file" id="exampleFile"/>
+          
+          
+          <Input type="file" id="exampleFile" onChange={this.fileSelectHandler}  accept="image/gif,image/jpeg,image/jpg,image/png" />
+          <Button disabled={!isEnabledPhoto} color="primary" onClick={this.onSubmitPhoto} block>Submit Change</Button>
+        
         </FormGroup>
         </Col>
        
