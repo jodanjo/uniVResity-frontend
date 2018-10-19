@@ -44,7 +44,7 @@ const  { isSignedIn, name, photo } = this.props;
         <Navbar className="Navbar" color="white" light expand="md">
         <Link to="/">
             <NavbarBrand>
-              <img src="../images/logo.jpg" height="55" width="185" alt="uniVresity" />
+              <img src="images/logo.JPG" height="55" width="185" alt="uniVresity" />
             </NavbarBrand>
           </Link>
           <NavbarToggler onClick={this.toggle} />
