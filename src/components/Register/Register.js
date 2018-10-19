@@ -124,7 +124,7 @@ import {
         const isEnabled = this.state.validate.emailState === 'has-success' && this.state.validate.passwordState === 'has-success' && this.state.validate.nameState === 'has-success';
         return (
           <Container className="app">
-           <img style={{marginLeft:'75px'}}src="images/logo.jpg" height="55" width="185" alt="uniVresity" />
+           <img style={{marginLeft:'75px'}}src="images/logo.JPG" height="55" width="185" alt="uniVresity" />
           <hr/>
             <h3>Register</h3>
             <Form className="form" onSubmit={ (e) => this.submitForm(e) }>
